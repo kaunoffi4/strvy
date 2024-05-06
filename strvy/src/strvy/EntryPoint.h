@@ -7,8 +7,11 @@ extern strvy::Application* strvy::createApplication();
 
 int main(int argc, char** argv)
 {
+	strvy::Log::init();
+	SV_CORE_WARN("Initialized Log!");
+	int a = 5;
+	SV_INFO("Hello Var={0}", a);
 
-	printf("strvy engine");
 	auto app = strvy::createApplication();
 	app->run();
 	delete app;

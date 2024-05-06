@@ -1,0 +1,9 @@
+[submodule "strvy/vendor/spdlog"]
+	path = strvy/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "strvy/vendor/GLFW"]
+	path = strvy/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
+[submodule "strvy/vendor/GLFW(fixed)"]
+	path = strvy/vendor/GLFW(fixed)
+	url = https://github.com/TheCherno/glfw
