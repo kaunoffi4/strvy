@@ -11,7 +11,7 @@ namespace strvy {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,		// may be it should be implemented in some other "constant" way
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -41,11 +41,14 @@ namespace strvy {
 		virtual const char* getName() const = 0;
 		virtual int getCategoryFlags() const = 0;
 		virtual std::string toString() const { return getName(); }
+		bool handled() const { return m_handled; }
 
 		inline bool isInCategory(EventCategory category)
 		{
 			return getCategoryFlags() & category;
 		}
+
+
 	protected:
 		bool m_handled = false;
 	};

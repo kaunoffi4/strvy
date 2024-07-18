@@ -4,6 +4,8 @@
 
 #include <GLFW/glfw3.h>
 
+
+
 namespace strvy {
 
 	class WindowsWindow : public Window
@@ -22,6 +24,8 @@ namespace strvy {
 		inline void setEventCallback(const eventCallbackFn& callback) override { m_data.eventCallback = callback; }
 		void setVSync(bool enabled) override;
 		bool isVSync() const override;
+
+		inline void* getNativeWindow() const { return m_window; }
 	private:
 		virtual void init(const WindowProps& props);
 		virtual void shutdown();
@@ -38,9 +42,6 @@ namespace strvy {
 		};
 
 		WindowData m_data;
-
-
-		
 
 	};
 }

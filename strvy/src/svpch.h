@@ -12,6 +12,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include "strvy/Log.h"
+
 #ifdef SV_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

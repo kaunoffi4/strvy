@@ -42,6 +42,8 @@ namespace strvy {
 		virtual void setVSync(bool enabled) = 0;
 		virtual bool isVSync() const = 0;
 
+		virtual void* getNativeWindow() const = 0;
+
 		static Window* create(const WindowProps& props = WindowProps());
 	};
 }
