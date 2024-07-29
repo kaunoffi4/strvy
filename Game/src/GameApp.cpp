@@ -34,7 +34,6 @@ public:
 	Game()
 	{
 		pushLayer(new ExampleLayer());
-		pushOverlay(new strvy::ImGuiLayer());
 	}
 
 	~Game()

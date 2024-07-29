@@ -28,9 +28,10 @@ include "strvy/vendor/imgui"
 
 project "strvy"
     location "strvy"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-    staticruntime "off"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -64,43 +65,43 @@ project "strvy"
         "opengl32.lib"
     }
 
+    defines
+    {
+        "_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING",
+        "_CRT_SECURE_NO_WARNINGS"
+    }
+    
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
         
 
         defines 
         {
             "SV_PLATFORM_WINDOWS",
-            "SV_BUILD_DLL",
             "GLFW_INCLUDE_NONE"
-        }
-
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Game/\"")
         }
 
         filter "configurations:Debug"
             defines "SV_DEBUG"
             runtime "Debug"
-            symbols "On"
+            symbols "on"
 
         filter "configurations:Release"
             defines "SV_RELEASE"
             runtime "Release"
-            optimize "On"
+            optimize "on"
 
         filter "configurations:Dist"
             defines "SV_DIST"
             runtime "Release"
-            optimize "On"
+            optimize "on"
 
 project "Game"
     location "Game"
     kind "ConsoleApp"
     language "C++"
-    staticruntime "off"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,8 +124,11 @@ project "Game"
         "strvy"
     }
 
+    defines
+    {
+        "_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING"
+    }
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
 
         defines 
@@ -136,15 +140,15 @@ project "Game"
         filter "configurations:Debug"
             defines "SV_DEBUG"
             runtime "Debug"
-            symbols "On"
+            symbols "on"
 
         filter "configurations:Release"
             defines "SV_RELEASE"
             runtime "Release"
-            optimize "On"
+            optimize "on"
 
         filter "configurations:Dist"
             defines "SV_DIST"
             runtime "Release"
-            optimize "On"
+            optimize "on"
 

@@ -6,7 +6,8 @@
 #include "strvy/Events/ApplicationEvent.h"
 #include "strvy/Events/MouseEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
+
 
 
 
@@ -43,6 +44,7 @@ namespace strvy {
 
 		SV_CORE_INFO("Creating window {0} ({1}, {2})", props.title, props.width, props.height);
 
+
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
@@ -53,9 +55,10 @@ namespace strvy {
 		}
 
 		m_window = glfwCreateWindow((int)props.width, (int)props.height, m_data.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		SV_CORE_ASSERT(status, "Failed to initialize Glad!")
+
+		m_context = new OpenGLContext(m_window);
+		m_context->init();
+
 		glfwSetWindowUserPointer(m_window, &m_data);
 		setVSync(true);
 
@@ -160,7 +163,7 @@ namespace strvy {
 	void WindowsWindow::onUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_window);
+		m_context->swapBuffers();
 	}
 
 	void WindowsWindow::setVSync(bool enabled)

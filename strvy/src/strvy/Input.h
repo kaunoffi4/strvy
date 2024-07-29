@@ -6,7 +6,7 @@
 
 namespace strvy {
 
-	class STRVY_API Input
+	class STRVY_API Input 
 	{
 	public:
 		inline static bool isKeyPressed(int keycode) { return s_instance->isKeyPressedImpl(keycode); }
