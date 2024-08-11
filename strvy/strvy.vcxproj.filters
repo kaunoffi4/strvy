@@ -7,17 +7,26 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\strvy">
       <UniqueIdentifier>{04A11EB6-700B-D32C-B949-84D225F3B081}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\strvy\Core">
+      <UniqueIdentifier>{DC0739D4-C8D5-2CDA-B169-9D009DD6083F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\strvy\Events">
       <UniqueIdentifier>{6880BCCB-5479-DB1D-7DAB-C0A26903BB29}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\strvy\ImGui">
       <UniqueIdentifier>{2EC9C45B-9A54-3220-A365-B5140F708E20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\strvy\Renderer">
+      <UniqueIdentifier>{2A49D9A3-162D-9AF9-7F8D-944C6B90847B}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -40,8 +49,29 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -51,14 +81,38 @@
     <ClInclude Include="src\strvy.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Application.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Core\Application.h">
+      <Filter>src\strvy\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Core.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Core\Core.h">
+      <Filter>src\strvy\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\EntryPoint.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Core\EntryPoint.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\Input.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\KeyCodes.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\Layer.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\LayerStack.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\Log.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\MouseButtonCodes.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\Timestep.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Core\Window.h">
+      <Filter>src\strvy\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Events\ApplicationEvent.h">
       <Filter>src\strvy\Events</Filter>
@@ -75,26 +129,35 @@
     <ClInclude Include="src\strvy\ImGui\ImGuiLayer.h">
       <Filter>src\strvy\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Input.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Renderer\Buffer.h">
+      <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\KeyCodes.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Renderer\GraphicsContext.h">
+      <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Layer.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Renderer\OrthographicCamera.h">
+      <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\LayerStack.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Renderer\OrthographicCameraController.h">
+      <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Log.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Renderer\RenderCommand.h">
+      <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\MouseButtonCodes.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Renderer\Renderer.h">
+      <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Window.h">
-      <Filter>src\strvy</Filter>
+    <ClInclude Include="src\strvy\Renderer\RendererAPI.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Shader.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Texture.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\VertexArray.h">
+      <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\svpch.h">
       <Filter>src</Filter>
@@ -1347,27 +1410,47 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\strvy\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\strvy\Renderer\Shader.h" />
-    <ClInclude Include="src\strvy\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\strvy\Renderer\Renderer.h" />
-    <ClInclude Include="src\strvy\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\strvy\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\strvy\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\strvy\Application.cpp">
-      <Filter>src\strvy</Filter>
+    <ClCompile Include="src\strvy\Core\Application.cpp">
+      <Filter>src\strvy\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Core\Layer.cpp">
+      <Filter>src\strvy\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Core\LayerStack.cpp">
+      <Filter>src\strvy\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Core\Log.cpp">
+      <Filter>src\strvy\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\ImGui\ImGuiBuild.cpp">
       <Filter>src\strvy\ImGui</Filter>
@@ -1375,27 +1458,39 @@
     <ClCompile Include="src\strvy\ImGui\ImGuiLayer.cpp">
       <Filter>src\strvy\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\strvy\Layer.cpp">
-      <Filter>src\strvy</Filter>
+    <ClCompile Include="src\strvy\Renderer\Buffer.cpp">
+      <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\strvy\LayerStack.cpp">
-      <Filter>src\strvy</Filter>
+    <ClCompile Include="src\strvy\Renderer\OrthographicCamera.cpp">
+      <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\strvy\Log.cpp">
-      <Filter>src\strvy</Filter>
+    <ClCompile Include="src\strvy\Renderer\OrthographicCameraController.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\RenderCommand.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Renderer.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\RendererAPI.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Shader.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Texture.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\VertexArray.cpp">
+      <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\svpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\strvy\Renderer\Shader.cpp" />
-    <ClCompile Include="src\strvy\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\strvy\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\strvy\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\strvy\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\strvy\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

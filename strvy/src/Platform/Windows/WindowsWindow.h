@@ -1,6 +1,6 @@
 #pragma once
 
-#include "strvy/Window.h"
+#include "strvy/Core/Window.h"
 #include "strvy/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

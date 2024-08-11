@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include "GLFW/glfw3.h"
-#include "strvy/Application.h"
+#include "strvy/Core/Application.h"
 
 namespace strvy {
 

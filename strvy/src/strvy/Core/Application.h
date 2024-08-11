@@ -3,22 +3,20 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "strvy/LayerStack.h"
+#include "strvy/Core/LayerStack.h"
 #include "strvy/Events/Event.h"
 #include "strvy/Events/ApplicationEvent.h"
 
-#include "strvy/ImGui/ImGuiLayer.h"
+#include "strvy/Core/Timestep.h"
 
-#include "strvy/Renderer/Shader.h"
-#include "strvy/Renderer/Buffer.h"
-#include "strvy/Renderer/VertexArray.h"
+#include "strvy/ImGui/ImGuiLayer.h"
 
 
 
 
 namespace strvy {
 
-	class STRVY_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -35,18 +33,14 @@ namespace strvy {
 		inline Window& getWindow() { return *m_window; }
 	private:
 		bool onWindowClose(WindowCloseEvent& e);
-
+		bool onWindowResize(WindowResizeEvent& e);
+	private:
 		std::unique_ptr<Window> m_window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_running = true;
+		bool m_minimized = false;
 		LayerStack m_layerStack;
-		
-		std::shared_ptr<Shader> m_shader;
-		std::shared_ptr<VertexArray> m_vertexArray;
-
-		std::shared_ptr<Shader> m_blueShader;
-		std::shared_ptr<VertexArray> m_squareVA;
-
+		float m_lastFrameTime = 0.0f;
 		
 	private:
 		static Application* s_instance;

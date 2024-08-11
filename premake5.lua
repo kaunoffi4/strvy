@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "strvy/vendor/GLFW/include"
 IncludeDir["Glad"] = "strvy/vendor/Glad/include"
 IncludeDir["ImGui"] = "strvy/vendor/imgui"
 IncludeDir["glm"] = "strvy/vendor/glm"
+IncludeDir["stb_image"] = "strvy/vendor/stb_image"
 
 
 
@@ -43,6 +44,8 @@ project "strvy"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/stb_image/**.h",
+        "%{prj.name}/vendor/stb_image/**.cpp",
         "%{prj.name}/vendor/glm/glm/**.hpp",
         "%{prj.name}/vendor/glm/glm/**.inl"
     }
@@ -54,7 +57,8 @@ project "strvy"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.stb_image}"
     }
 
     links
@@ -116,7 +120,9 @@ project "Game"
     {
         "strvy/vendor/spdlog/include",
         "strvy/src",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "strvy/vendor",
+        "Game"
     }
 
     links

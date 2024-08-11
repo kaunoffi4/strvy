@@ -1,6 +1,6 @@
 #pragma once
 
-#include "strvy/Input.h"
+#include "strvy/Core/Input.h"
 
 namespace strvy {
 

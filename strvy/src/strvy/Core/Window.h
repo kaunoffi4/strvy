@@ -2,7 +2,7 @@
 
 #include "svpch.h"
 
-#include "strvy/Core.h"
+#include "strvy/Core/Core.h"
 #include "strvy/Events/Event.h"
 
 namespace strvy {

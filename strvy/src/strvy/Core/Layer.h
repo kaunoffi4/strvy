@@ -1,7 +1,9 @@
 #pragma once
 
-#include "strvy/Core.h"
+#include "strvy/Core/Core.h"
 #include "strvy/Events/Event.h"
+
+#include "strvy/Core/Timestep.h"
 
 namespace strvy {
 
@@ -13,7 +15,7 @@ namespace strvy {
 
 		virtual void onAttach() {}
 		virtual void onDetach() {}
-		virtual void onUpdate() {}
+		virtual void onUpdate(Timestep ts) {}
 		virtual void onImGuiRender() {}
 		virtual void onEvent(Event& event) {}
 

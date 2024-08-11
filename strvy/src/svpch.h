@@ -9,10 +9,11 @@
 
 #include <string>
 #include <sstream>
+#include <array>
 #include <vector>
 #include <unordered_map>
 
-#include "strvy/Log.h"
+#include "strvy/Core/Log.h"
 
 #ifdef SV_PLATFORM_WINDOWS
 	#include <Windows.h>
