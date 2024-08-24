@@ -8,11 +8,14 @@ namespace strvy {
 	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
+		OpenGLVertexBuffer(uint32_t size);
 		OpenGLVertexBuffer(float* vertices, uint32_t size);
 		virtual ~OpenGLVertexBuffer();
 
 		virtual void bind() const override;
 		virtual void unbind() const override;
+
+		virtual void setData(const void* data, uint32_t size) override;
 
 		virtual const BufferLayout& getLayout() const override { return m_layout; }
 		virtual void setLayout(const BufferLayout& layout) override { m_layout = layout; };

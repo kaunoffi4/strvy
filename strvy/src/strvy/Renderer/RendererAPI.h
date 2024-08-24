@@ -20,7 +20,7 @@ namespace strvy {
 		virtual void clear() = 0;
 		
 
-		virtual void drawIndexed(const std::shared_ptr<VertexArray>& vertexArray) = 0;
+		virtual void drawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount = 0) = 0;
 
 		inline static API getAPI() { return s_API; }
 	private:

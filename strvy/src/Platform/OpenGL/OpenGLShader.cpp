@@ -20,6 +20,8 @@ namespace strvy {
 
 	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
+		SV_PROFILE_FUNCTION();
+
 		std::string source = readFile(filepath);
 		auto shaderSources = preProcess(source);
 		compile(shaderSources);
@@ -36,6 +38,8 @@ namespace strvy {
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 		: m_name(name)
 	{
+		SV_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
 		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -45,11 +49,15 @@ namespace strvy {
 	
 	OpenGLShader::~OpenGLShader()
 	{
+		SV_PROFILE_FUNCTION();
+
 		glDeleteProgram(m_rendererID);
 	}
 
 	std::string OpenGLShader::readFile(const std::string& filepath)
 	{
+		SV_PROFILE_FUNCTION();
+
 		std::string result;
 		std::ifstream in(filepath, std::ios::in | std::ios::binary); // input file stream / we tell this is the input file in 2nd parameter and that we want it to be read as binary in 3rd
 		if (in)
@@ -71,6 +79,8 @@ namespace strvy {
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::preProcess(const std::string& source)
 	{
+		SV_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const char* typeToken = "#type";
@@ -94,6 +104,8 @@ namespace strvy {
 
 	void OpenGLShader::compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
+		SV_PROFILE_FUNCTION();
+
 		GLuint program = glCreateProgram();
 		SV_CORE_ASSERT(shaderSources.size() <= 2, "Maximum count of shaders is 2 at the moment");
 		std::array<GLenum, 2> glShaderIDs;  
@@ -168,31 +180,50 @@ namespace strvy {
 
 	void OpenGLShader::bind() const
 	{
+		SV_PROFILE_FUNCTION();
+
 		glUseProgram(m_rendererID);
 	}
 
 	void OpenGLShader::unbind() const
 	{
+		SV_PROFILE_FUNCTION();
+
 		glUseProgram(0);
 	}
 
 	void OpenGLShader::setInt(const std::string& name, int value)
 	{
+		SV_PROFILE_FUNCTION();
+
 		uploadUniformInt(name, value);
+	}
+
+	void OpenGLShader::setFloat(const std::string& name, float value)
+	{
+		SV_PROFILE_FUNCTION();
+
+		uploadUniformFloat(name, value);
 	}
 
 	void OpenGLShader::setFloat3(const std::string& name, const glm::vec3& value)
 	{
+		SV_PROFILE_FUNCTION();
+
 		uploadUniformFloat3(name, value);
 	}
 
 	void OpenGLShader::setFloat4(const std::string& name, const glm::vec4& value)
 	{
+		SV_PROFILE_FUNCTION();
+
 		uploadUniformFloat4(name, value);
 	}
 
 	void OpenGLShader::setMat4(const std::string& name, const glm::mat4& value)
 	{
+		SV_PROFILE_FUNCTION();
+
 		uploadUniformMat4(name, value);
 	}
 

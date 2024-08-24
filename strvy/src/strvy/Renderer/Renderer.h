@@ -12,6 +12,7 @@ namespace strvy {
 	{
 	public:
 		static void init();
+		static void shutdown();
 		static void onWindowResize(uint32_t width, uint32_t height);
 
 		static void beginScene(OrthographicCamera& camera);

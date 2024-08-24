@@ -14,6 +14,8 @@ namespace strvy {
 
 	void OrthographicCameraController::onUpdate(Timestep ts)
 	{
+		SV_PROFILE_FUNCTION();
+
 		if (Input::isKeyPressed(SV_KEY_W))
 			m_cameraPosition.y += m_cameraTranslationSpeed * ts;
 		else if (Input::isKeyPressed(SV_KEY_S))
@@ -40,6 +42,8 @@ namespace strvy {
 
 	void OrthographicCameraController::onEvent(Event& e)
 	{
+		SV_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<MouseScrolledEvent>(SV_BIND_EVENT_FN(OrthographicCameraController::onMouseScrolled));
 		dispatcher.dispatch<WindowResizeEvent>(SV_BIND_EVENT_FN(OrthographicCameraController::onWindowResized));
@@ -47,6 +51,8 @@ namespace strvy {
 
 	bool OrthographicCameraController::onMouseScrolled(MouseScrolledEvent& e)
 	{
+		SV_PROFILE_FUNCTION();
+
 		m_zoomLevel -= e.getYOffset() * 0.25f;
 		m_zoomLevel = std::max(m_zoomLevel, 0.25f);
 		m_camera.setProjection(-m_aspectRatio * m_zoomLevel, m_aspectRatio * m_zoomLevel, -m_zoomLevel, m_zoomLevel);
@@ -56,6 +62,8 @@ namespace strvy {
 
 	bool OrthographicCameraController::onWindowResized(WindowResizeEvent& e)
 	{
+		SV_PROFILE_FUNCTION();
+
 		m_aspectRatio = (float)e.getWidth() / (float)e.getHeight();
 		m_camera.setProjection(-m_aspectRatio * m_zoomLevel, m_aspectRatio * m_zoomLevel, -m_zoomLevel, m_zoomLevel);
 

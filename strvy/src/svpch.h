@@ -15,6 +15,8 @@
 
 #include "strvy/Core/Log.h"
 
+#include "strvy/Debug/Instrumentor.h"
+
 #ifdef SV_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

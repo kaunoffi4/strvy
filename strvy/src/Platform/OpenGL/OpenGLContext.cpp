@@ -15,6 +15,8 @@ namespace strvy {
 
 	void OpenGLContext::init()
 	{
+		SV_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_windowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		SV_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -32,6 +34,8 @@ namespace strvy {
 
 	void OpenGLContext::swapBuffers()
 	{
+		SV_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_windowHandle);
 	}
 }

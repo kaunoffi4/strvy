@@ -28,27 +28,38 @@ namespace strvy {
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
+		SV_PROFILE_FUNCTION();
+
 		glCreateVertexArrays(1, &m_rendererID);
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
+		SV_PROFILE_FUNCTION();
+
 		glDeleteVertexArrays(1, &m_rendererID);
 	}
 
 	void OpenGLVertexArray::bind() const
 	{
+		SV_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_rendererID);
 	}
 
 	void OpenGLVertexArray::unbind() const
 	{
+		SV_PROFILE_FUNCTION();
+
 		glBindVertexArray(0);
 	}
 
 	void OpenGLVertexArray::addVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
 	{
+		SV_PROFILE_FUNCTION();
+
 		SV_CORE_ASSERT(vertexBuffer->getLayout().getElements().size(), "VertexBuffer has no layout!");
+
 
 		glBindVertexArray(m_rendererID);
 		vertexBuffer->bind();

@@ -163,6 +163,7 @@
     <ClInclude Include="src\strvy\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\strvy\Core\Timestep.h" />
     <ClInclude Include="src\strvy\Core\Window.h" />
+    <ClInclude Include="src\strvy\Debug\Instrumentor.h" />
     <ClInclude Include="src\strvy\Events\ApplicationEvent.h" />
     <ClInclude Include="src\strvy\Events\Event.h" />
     <ClInclude Include="src\strvy\Events\KeyEvent.h" />

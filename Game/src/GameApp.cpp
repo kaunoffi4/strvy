@@ -27,8 +27,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f
 		};
 
-		strvy::Ref<strvy::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(strvy::VertexBuffer::create(vertices, sizeof(vertices)));
+		strvy::Ref<strvy::VertexBuffer> vertexBuffer = strvy::VertexBuffer::create(vertices, sizeof(vertices));
 
 		// Describe
 		strvy::BufferLayout layout = {
@@ -41,8 +40,7 @@ public:
 		m_vertexArray->addVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		strvy::Ref<strvy::IndexBuffer> indexBuffer;
-		indexBuffer.reset(strvy::IndexBuffer::create(indices, sizeof(indices) / sizeof(uint32_t)));
+		strvy::Ref<strvy::IndexBuffer> indexBuffer = strvy::IndexBuffer::create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_vertexArray->setIndexBuffer(indexBuffer);
 
 
@@ -54,8 +52,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		strvy::Ref<strvy::VertexBuffer> squareVB;
-		squareVB.reset(strvy::VertexBuffer::create(squareVertices, sizeof(squareVertices)));
+		strvy::Ref<strvy::VertexBuffer> squareVB = strvy::VertexBuffer::create(squareVertices, sizeof(squareVertices));
 
 		squareVB->setLayout({
 			{ strvy::ShaderDataType::Float3, "a_Position" },
@@ -64,8 +61,7 @@ public:
 		m_squareVA->addVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		strvy::Ref<strvy::IndexBuffer> squareIB;
-		squareIB.reset(strvy::IndexBuffer::create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		strvy::Ref<strvy::IndexBuffer> squareIB = strvy::IndexBuffer::create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_squareVA->setIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(

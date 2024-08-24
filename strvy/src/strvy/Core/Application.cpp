@@ -20,6 +20,8 @@ namespace strvy {
 
 	Application::Application()
 	{
+		SV_PROFILE_FUNCTION();
+
 		SV_CORE_ASSERT(!s_instance, "Application already exists!");
 		s_instance = this;
 
@@ -34,22 +36,31 @@ namespace strvy {
 
 	Application::~Application()
 	{
+		SV_PROFILE_FUNCTION();
+
+		Renderer::shutdown();
 	}
 
 	void Application::pushLayer(Layer* layer)
 	{
+		SV_PROFILE_FUNCTION();
+
 		m_layerStack.pushLayer(layer);
 		layer->onAttach();
 	}
 
 	void Application::pushOverlay(Layer* layer)
 	{
+		SV_PROFILE_FUNCTION();
+
 		m_layerStack.pushOverlay(layer);
 		layer->onAttach();
 	}
 	
 	void Application::onEvent(Event& e)
 	{
+		SV_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
 		dispatcher.dispatch<WindowResizeEvent>(BIND_EVENT_FN(onWindowResize));
@@ -67,24 +78,34 @@ namespace strvy {
 
 	void Application::run()
 	{
+		SV_PROFILE_FUNCTION();
+
 		while (m_running)
 		{
+			SV_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime(); // Platform::getTime
 			Timestep timestep = time - m_lastFrameTime;
 			m_lastFrameTime = time;
 
 			if (!m_minimized)
 			{
-				for (Layer* layer : m_layerStack)
-					layer->onUpdate(timestep);
+				{
+					SV_PROFILE_SCOPE("LayerStack onUpdate");
+
+					for (Layer* layer : m_layerStack)
+						layer->onUpdate(timestep);
+				}
+
+				m_ImGuiLayer->begin();
+				{
+					SV_PROFILE_SCOPE("LayerStack onImGuiRender");
+
+					for (Layer* layer : m_layerStack)
+						layer->onImGuiRender();
+				}
+				m_ImGuiLayer->end();
 			}
-
-			m_ImGuiLayer->begin();
-
-			for (Layer* layer : m_layerStack)
-				layer->onImGuiRender();
-
-			m_ImGuiLayer->end();
 				
 
 			m_window->onUpdate();
@@ -100,6 +121,8 @@ namespace strvy {
 
 	bool Application::onWindowResize(WindowResizeEvent& e)
 	{
+		SV_PROFILE_FUNCTION();
+
 		if (e.getWidth() == 0 || e.getHeight() == 0)
 		{
 			m_minimized = true;

@@ -16,7 +16,7 @@ namespace strvy {
 	ImGuiLayer::ImGuiLayer()
 		: Layer("ImGuiLayer")
 	{
-
+	 
 	}
 
 	ImGuiLayer::~ImGuiLayer()
@@ -25,6 +25,8 @@ namespace strvy {
 	}
 	void ImGuiLayer::onAttach()
 	{
+		SV_PROFILE_FUNCTION();
+
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -47,7 +49,7 @@ namespace strvy {
 
 		Application& app = Application::get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.getWindow().getNativeWindow());
-
+					
 		// Setup Platform/Renderer bindings
 		ImGui_ImplGlfw_InitForOpenGL(window, true);
 		ImGui_ImplOpenGL3_Init("#version 410");
@@ -55,6 +57,8 @@ namespace strvy {
 	}
 	void ImGuiLayer::onDetach()
 	{
+		SV_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -63,6 +67,8 @@ namespace strvy {
 
 	void ImGuiLayer::begin()
 	{
+		SV_PROFILE_FUNCTION();
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -70,6 +76,8 @@ namespace strvy {
 
 	void ImGuiLayer::end()
 	{
+		SV_PROFILE_FUNCTION();
+
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::get();
 		io.DisplaySize = ImVec2((float)app.getWindow().getWidth(), (float)app.getWindow().getHeight());
@@ -85,11 +93,5 @@ namespace strvy {
 			ImGui::RenderPlatformWindowsDefault();
 			glfwMakeContextCurrent(backup_current_context);
 		}
-	}
-
-	void ImGuiLayer::onImGuiRender()
-	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
 	}
 }

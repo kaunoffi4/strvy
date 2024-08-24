@@ -113,12 +113,16 @@ namespace strvy {
 		virtual void bind() const = 0;
 		virtual void unbind() const = 0;
 
+		virtual void setData(const void* data, uint32_t size) = 0;
+
 		virtual const BufferLayout& getLayout() const = 0;
 		virtual void setLayout(const BufferLayout& layout) = 0;
 
-		static VertexBuffer* create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> create(uint32_t size);
+		static Ref<VertexBuffer> create(float* vertices, uint32_t size);
 	};
-
+	
+	// currently strvy only supports 32-bit buffers
 	class IndexBuffer
 	{
 	public:
@@ -129,6 +133,6 @@ namespace strvy {
 
 		virtual uint32_t getCount() const = 0;
 
-		static IndexBuffer* create(uint32_t* indices, uint32_t size);
+		static Ref<IndexBuffer> create(uint32_t* indices, uint32_t count);
 	};
 }
