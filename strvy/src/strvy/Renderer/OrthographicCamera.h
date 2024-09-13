@@ -12,7 +12,7 @@ namespace strvy {
 		void setProjection(float left, float right, float bottom, float top);
 
 		const glm::vec3& getPosition() const { return m_position; }
-		void setPosition(const glm::vec3& position) { m_position = position; recalculateViewMatrix(); }
+		void setPosition(const glm::vec3& position) { m_position = position; recalculateViewMatrix(); } // check out if a vec3 is all zeros
 
 		float getRotation() const { return m_rotation; }
 		void setRotation(float rotation) { m_rotation = rotation; recalculateViewMatrix(); }

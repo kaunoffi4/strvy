@@ -38,12 +38,16 @@ void Sandbox2D::onUpdate(strvy::Timestep ts)
 	strvy::RenderCommand::clear();
 
 	{
+		static float rotation = 0.0f;
+		rotation += ts * 20.0f;
+
 		SV_PROFILE_SCOPE("Renderer2D::drawQuads");
 
 		strvy::Renderer2D::beginScene(m_cameraController.getCamera());
 		strvy::Renderer2D::drawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-		strvy::Renderer2D::drawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-		//strvy::Renderer2D::drawRotatedQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, glm::radians(45.0f), m_checkerboardTexture, 10.0f, glm::vec4(1.0f, 0.9f, 0.9f, 1.0f));
+		strvy::Renderer2D::drawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_squareColor);
+		strvy::Renderer2D::drawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_checkerboardTexture, 10.0f, glm::vec4(1.0f, 0.9f, 0.9f, 1.0f));
+		strvy::Renderer2D::drawRotatedQuad({ -2.0f, 0.0f,  0.0f }, { 1.0f, 1.0f }, rotation, m_checkerboardTexture, 20.0f, glm::vec4(1.0f, 0.9f, 0.9f, 1.0f));
 		strvy::Renderer2D::endScene();
 	}
 }

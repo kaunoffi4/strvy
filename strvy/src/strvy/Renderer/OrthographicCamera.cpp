@@ -25,8 +25,8 @@ namespace strvy {
 	{
 		SV_PROFILE_FUNCTION();
 
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_position) *
-			glm::rotate(glm::mat4(1.0f), glm::radians(m_rotation), glm::vec3(0, 0, 1));
+		glm::mat4 transform = glm::rotate(glm::mat4(1.0f), glm::radians(m_rotation), glm::vec3(0, 0, 1)) 
+			* glm::translate(glm::mat4(1.0f), m_position);													// camera's local space
 
 		
 		m_viewMatrix = glm::inverse(transform);

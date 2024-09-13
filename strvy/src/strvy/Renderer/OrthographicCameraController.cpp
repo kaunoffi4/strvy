@@ -16,6 +16,7 @@ namespace strvy {
 	{
 		SV_PROFILE_FUNCTION();
 
+
 		if (Input::isKeyPressed(SV_KEY_W))
 			m_cameraPosition.y += m_cameraTranslationSpeed * ts;
 		else if (Input::isKeyPressed(SV_KEY_S))
@@ -26,13 +27,16 @@ namespace strvy {
 		else if (Input::isKeyPressed(SV_KEY_D))
 			m_cameraPosition.x += m_cameraTranslationSpeed * ts;
 
-
 		if (m_rotation)
 		{
 			if (Input::isKeyPressed(SV_KEY_Q))
+			{
 				m_cameraRotation += m_cameraRotationSpeed * ts;
+			}
 			if (Input::isKeyPressed(SV_KEY_E))
+			{ 
 				m_cameraRotation -= m_cameraRotationSpeed * ts;
+			}
 
 			m_camera.setRotation(m_cameraRotation);
 		}

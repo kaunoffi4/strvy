@@ -31,9 +31,9 @@ namespace strvy {
 		OrthographicCamera m_camera; // the order of the members matters
 
 		bool m_rotation;
-
 		float m_cameraRotation = 0.0f;
 		glm::vec3 m_cameraPosition = { 0.0f, 0.0f, 0.0f };
-		float m_cameraTranslationSpeed = 5.0f, m_cameraRotationSpeed = 180.0f;
+
+		float m_cameraTranslationSpeed = 5.0f, m_cameraRotationSpeed = 150.0f;
 	};
 }
