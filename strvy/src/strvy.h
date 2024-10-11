@@ -23,7 +23,9 @@
 
 #include "strvy/Renderer/Buffer.h"
 #include "strvy/Renderer/Shader.h"
+#include "strvy/Renderer/Framebuffer.h"
 #include "strvy/Renderer/Texture.h"
+#include "strvy/Renderer/SubTexture2D.h"
 #include "strvy/Renderer/VertexArray.h"
 
 #include "strvy/Renderer/OrthographicCamera.h"

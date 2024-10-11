@@ -31,6 +31,8 @@ namespace strvy {
 
 		inline static Application& get() { return *s_instance; }
 		inline Window& getWindow() { return *m_window; }
+
+		void close();
 	private:
 		bool onWindowClose(WindowCloseEvent& e);
 		bool onWindowResize(WindowResizeEvent& e);

@@ -8,6 +8,15 @@
 
 namespace strvy {
 
+	struct OrthographicCameraBounds
+	{
+		float left, right;
+		float bottom, top;
+
+		float getWidth() { return right - left; }
+		float getHeight() { return top - bottom; }
+	};
+
 	class OrthographicCameraController
 	{
 	public:
@@ -22,12 +31,14 @@ namespace strvy {
 		float getZoomLevel() const { return m_zoomLevel; }
 		void setZoomLevel(float level) { m_zoomLevel = level; }
 
+		const OrthographicCameraBounds& getBounds() const { return m_bounds; }
 	private:
 		bool onMouseScrolled(MouseScrolledEvent& e);
 		bool onWindowResized(WindowResizeEvent& e);
 	private:
 		float m_aspectRatio;
 		float m_zoomLevel = 1.0f;
+		OrthographicCameraBounds m_bounds;
 		OrthographicCamera m_camera; // the order of the members matters
 
 		bool m_rotation;

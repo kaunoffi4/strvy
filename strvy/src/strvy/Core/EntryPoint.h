@@ -16,7 +16,6 @@ int main(int argc, char** argv)
 	auto app = strvy::createApplication();
 	SV_PROFILE_END_SESSION();
 
-	SV_PROFILE_BEGIN_SESSION("Runtime", "strvyProfile-Runtime.json");
 	app->run();
 	SV_PROFILE_END_SESSION();
 

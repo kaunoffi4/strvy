@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="src\strvy\Events\MouseEvent.h" />
     <ClInclude Include="src\strvy\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\strvy\Renderer\Buffer.h" />
+    <ClInclude Include="src\strvy\Renderer\Framebuffer.h" />
     <ClInclude Include="src\strvy\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\strvy\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\strvy\Renderer\OrthographicCameraController.h" />
@@ -178,6 +180,7 @@
     <ClInclude Include="src\strvy\Renderer\Renderer2D.h" />
     <ClInclude Include="src\strvy\Renderer\RendererAPI.h" />
     <ClInclude Include="src\strvy\Renderer\Shader.h" />
+    <ClInclude Include="src\strvy\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\strvy\Renderer\Texture.h" />
     <ClInclude Include="src\strvy\Renderer\VertexArray.h" />
     <ClInclude Include="src\svpch.h" />
@@ -602,6 +605,7 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
@@ -615,6 +619,7 @@
     <ClCompile Include="src\strvy\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\strvy\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\strvy\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\strvy\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\strvy\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\strvy\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\strvy\Renderer\RenderCommand.cpp" />
@@ -622,6 +627,7 @@
     <ClCompile Include="src\strvy\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\strvy\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\strvy\Renderer\Shader.cpp" />
+    <ClCompile Include="src\strvy\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\strvy\Renderer\Texture.cpp" />
     <ClCompile Include="src\strvy\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\svpch.cpp">

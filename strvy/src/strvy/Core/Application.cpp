@@ -69,9 +69,9 @@ namespace strvy {
 
 		for (auto it = m_layerStack.end(); it != m_layerStack.begin(); )
 		{
-			(*--it)->onEvent(e);
 			if (e.handled())
 				break;
+			(*--it)->onEvent(e);
 		}
 
 	}
@@ -110,6 +110,11 @@ namespace strvy {
 
 			m_window->onUpdate();
 		}
+	}
+
+	void Application::close()
+	{
+		m_running = false;
 	}
 
 	bool Application::onWindowClose(WindowCloseEvent& e)
