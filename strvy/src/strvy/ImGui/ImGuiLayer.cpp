@@ -64,6 +64,16 @@ namespace strvy {
 		ImGui::DestroyContext();
 	}
 
+	void ImGuiLayer::onEvent(Event& e)
+	{
+		if (m_blockEvents)
+		{
+			ImGuiIO& io = ImGui::GetIO();
+			e.handled() |= e.isInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+			e.handled() |= e.isInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+		}
+	}
+
 
 	void ImGuiLayer::begin()
 	{

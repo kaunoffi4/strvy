@@ -17,12 +17,13 @@ IncludeDir["Glad"] = "strvy/vendor/Glad/include"
 IncludeDir["ImGui"] = "strvy/vendor/imgui"
 IncludeDir["glm"] = "strvy/vendor/glm"
 IncludeDir["stb_image"] = "strvy/vendor/stb_image"
+IncludeDir["entt"] = "strvy/vendor/entt/include"
 
 
-
-include "strvy/vendor/GLFW"
-include "strvy/vendor/Glad"
-include "strvy/vendor/imgui"
+group "Dependencies"
+    include "strvy/vendor/GLFW"
+    include "strvy/vendor/Glad"
+    include "strvy/vendor/imgui"
 
 
 
@@ -58,7 +59,8 @@ project "strvy"
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}",
-        "%{IncludeDir.stb_image}"
+        "%{IncludeDir.stb_image}",
+        "%{IncludeDir.entt}"
     }
 
     links
@@ -120,8 +122,9 @@ project "Game"
     {
         "strvy/vendor/spdlog/include",
         "strvy/src",
-        "%{IncludeDir.glm}",
         "strvy/vendor",
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.entt}",
         "Game"
     }
 
@@ -158,3 +161,63 @@ project "Game"
             runtime "Release"
             optimize "on"
 
+
+
+project "Strvy-Editor"
+    location "Strvy-Editor"
+    kind "ConsoleApp"
+    language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
+
+    targetdir("bin/" .. outputdir .. "/%{prj.name}")
+    objdir("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    files
+    {
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.cpp"
+    }
+
+    includedirs
+    {
+        "strvy/vendor/spdlog/include",
+        "strvy/src",
+        "%{IncludeDir.glm}",
+        "strvy/vendor",
+        "%{IncludeDir.entt}",
+        "Game"
+    }
+
+    links
+    {
+        "strvy"
+    }
+
+    defines
+    {
+        "_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING"
+    }
+    filter "system:windows"
+        systemversion "latest"
+
+        defines 
+        {
+            "SV_PLATFORM_WINDOWS"
+        }
+
+
+        filter "configurations:Debug"
+            defines "SV_DEBUG"
+            runtime "Debug"
+            symbols "on"
+
+        filter "configurations:Release"
+            defines "SV_RELEASE"
+            runtime "Release"
+            optimize "on"
+
+        filter "configurations:Dist"
+            defines "SV_DIST"
+            runtime "Release"
+            optimize "on"

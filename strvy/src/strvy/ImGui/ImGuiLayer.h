@@ -16,13 +16,16 @@ namespace strvy {
 
 		void onAttach() override;
 		void onDetach() override;
+		void onEvent(Event& e) override;
 
 		void begin();
 		void end();
 
+		void blockEvents(bool block) { m_blockEvents = block; }
+
 	private:
 		float m_Time = 0.0f;
-
+		bool m_blockEvents = true;
 
 	};
 }

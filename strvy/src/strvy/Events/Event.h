@@ -41,7 +41,7 @@ namespace strvy {
 		virtual const char* getName() const = 0;
 		virtual int getCategoryFlags() const = 0;
 		virtual std::string toString() const { return getName(); }
-		bool handled() const { return m_handled; }
+		bool& handled()  { return m_handled; }
 
 		inline bool isInCategory(EventCategory category)
 		{

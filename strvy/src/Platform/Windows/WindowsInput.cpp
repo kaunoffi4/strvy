@@ -1,14 +1,12 @@
 #include "svpch.h"
-#include "WindowsInput.h"
+#include "strvy/Core/Input.h"
 
-#include "GLFW/glfw3.h"
 #include "strvy/Core/Application.h"
+#include "GLFW/glfw3.h"
 
 namespace strvy {
 
-	Input* Input::s_instance = new WindowsInput();
-
-	bool WindowsInput::isKeyPressedImpl(int keycode)
+	bool Input::isKeyPressed(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::get().getWindow().getNativeWindow());	
 		auto state = glfwGetKey(window, keycode);
@@ -16,7 +14,7 @@ namespace strvy {
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::isMouseButtonPressedImpl(int button)
+	bool Input::isMouseButtonPressed(int button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::get().getWindow().getNativeWindow());
 		auto state = glfwGetMouseButton(window, button);
@@ -24,7 +22,7 @@ namespace strvy {
 		return state == GLFW_PRESS;
 	}
 
-	std::pair<float, float> WindowsInput::getMousePositionImpl()
+	std::pair<float, float> Input::getMousePosition()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::get().getWindow().getNativeWindow());
 		double xPos, yPos;
@@ -33,15 +31,15 @@ namespace strvy {
 		return { (float)xPos, (float)yPos };
 	}
 
-	float WindowsInput::getMouseXImpl()
+	float Input::getMouseX()
 	{
-		auto [x, y] = getMousePositionImpl();
+		auto [x, y] = getMousePosition();
 		return x;
 	}
 
-	float WindowsInput::getMouseYImpl()
+	float Input::getMouseY()
 	{
-		auto [x, y] = getMousePositionImpl();
+		auto [x, y] = getMousePosition();
 		return y;
 	}
 }

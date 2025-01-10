@@ -26,7 +26,6 @@ private:
 	// Temp
 	strvy::Ref<strvy::VertexArray> m_squareVA;
 	strvy::Ref<strvy::Shader> m_flatColorShader;
-	strvy::Ref<strvy::Framebuffer> m_framebuffer;
 
 	glm::vec4 m_squareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 

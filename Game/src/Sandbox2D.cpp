@@ -19,11 +19,6 @@ void Sandbox2D::onAttach()
 
 	m_checkerboardTexture = strvy::Texture2D::create("assets/textures/checkerboards.png");
 
-	strvy::FramebufferSpecification fb_spec;
-	fb_spec.width = 1280;
-	fb_spec.height = 720;
-	m_framebuffer = strvy::Framebuffer::create(fb_spec);
-
 
 	//m_spriteSheet = strvy::Texture2D::create("assets/textures/sheet.png");
 
@@ -54,7 +49,6 @@ void Sandbox2D::onUpdate(strvy::Timestep ts)
 	// Render
 
 	strvy::Renderer2D::resetStats();
-	m_framebuffer->bind();
 	strvy::RenderCommand::setClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 	strvy::RenderCommand::clear();
 
@@ -83,7 +77,6 @@ void Sandbox2D::onUpdate(strvy::Timestep ts)
 		}
 
 		strvy::Renderer2D::endScene();
-		m_framebuffer->unbind();
 	}
 
 	// Particle
@@ -110,7 +103,7 @@ void Sandbox2D::onImGuiRender()
 {
 	SV_PROFILE_FUNCTION();
 	
-	static bool docking_enabled = true;
+	static bool docking_enabled = false;
 	if (docking_enabled)
 	{
 
@@ -180,10 +173,6 @@ void Sandbox2D::onImGuiRender()
 		ImGui::Text("Indices: %d", stats.getTotalIndexCount());
 
 		ImGui::ColorEdit4("Square color", glm::value_ptr(m_squareColor));
-
-		uint32_t textureID = m_framebuffer->getColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ 320.0f, 180.0f });
-
 		ImGui::End();
 	}
 	else

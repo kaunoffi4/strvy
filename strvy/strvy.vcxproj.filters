@@ -19,6 +19,9 @@
     <Filter Include="src\strvy\Core">
       <UniqueIdentifier>{DC0739D4-C8D5-2CDA-B169-9D009DD6083F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\strvy\Debug">
+      <UniqueIdentifier>{7A5E665B-E6E9-D31F-EFFA-56145B053020}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\strvy\Events">
       <UniqueIdentifier>{6880BCCB-5479-DB1D-7DAB-C0A26903BB29}</UniqueIdentifier>
     </Filter>
@@ -27,6 +30,9 @@
     </Filter>
     <Filter Include="src\strvy\Renderer">
       <UniqueIdentifier>{2A49D9A3-162D-9AF9-7F8D-944C6B90847B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\strvy\Scene">
+      <UniqueIdentifier>{21C1745C-8D4C-E220-965D-651502683E21}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -60,6 +66,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -71,9 +80,6 @@
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
@@ -114,6 +120,9 @@
     <ClInclude Include="src\strvy\Core\Window.h">
       <Filter>src\strvy\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Debug\Instrumentor.h">
+      <Filter>src\strvy\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Events\ApplicationEvent.h">
       <Filter>src\strvy\Events</Filter>
     </ClInclude>
@@ -132,6 +141,9 @@
     <ClInclude Include="src\strvy\Renderer\Buffer.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Framebuffer.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Renderer\GraphicsContext.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
@@ -147,10 +159,16 @@
     <ClInclude Include="src\strvy\Renderer\Renderer.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Renderer2D.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Renderer\RendererAPI.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Shader.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\SubTexture2D.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Texture.h">
@@ -158,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\VertexArray.h">
       <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Scene\Scene.h">
+      <Filter>src\strvy\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\svpch.h">
       <Filter>src</Filter>
@@ -1413,17 +1434,21 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\strvy\Debug\Instrumentor.h" />
-    <ClInclude Include="src\strvy\Renderer\SubTexture2D.h" />
-    <ClInclude Include="src\strvy\Renderer\Framebuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
+    <ClInclude Include="vendor\entt\include\entt.hpp" />
+    <ClInclude Include="src\strvy\Scene\Components.h" />
+    <ClInclude Include="src\strvy\Scene\Entity.h" />
+    <ClInclude Include="src\strvy\Renderer\Camera.h" />
+    <ClInclude Include="src\strvy\Scene\SceneCamera.h" />
+    <ClInclude Include="src\strvy\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1465,6 +1490,9 @@
     <ClCompile Include="src\strvy\Renderer\Buffer.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Framebuffer.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\strvy\Renderer\OrthographicCamera.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
@@ -1477,10 +1505,16 @@
     <ClCompile Include="src\strvy\Renderer\Renderer.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Renderer2D.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\strvy\Renderer\RendererAPI.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Renderer\Shader.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\SubTexture2D.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Renderer\Texture.cpp">
@@ -1489,15 +1523,16 @@
     <ClCompile Include="src\strvy\Renderer\VertexArray.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\strvy\Scene\Scene.cpp">
+      <Filter>src\strvy\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\svpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\strvy\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\strvy\Renderer\SubTexture2D.cpp" />
-    <ClCompile Include="src\strvy\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
+    <ClCompile Include="src\strvy\Scene\Entity.cpp" />
+    <ClCompile Include="src\strvy\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

@@ -19,7 +19,7 @@ namespace strvy {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "strvy app");
 		virtual ~Application();
 
 		void run();
@@ -33,6 +33,8 @@ namespace strvy {
 		inline Window& getWindow() { return *m_window; }
 
 		void close();
+
+		ImGuiLayer* getImGuiLayer() { return m_ImGuiLayer; }
 	private:
 		bool onWindowClose(WindowCloseEvent& e);
 		bool onWindowResize(WindowResizeEvent& e);

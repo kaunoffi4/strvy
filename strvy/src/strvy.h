@@ -16,6 +16,11 @@
 
 #include "strvy/ImGui/ImGuiLayer.h"
 
+#include "strvy/Scene/Scene.h"
+#include "strvy/Scene/Entity.h"
+#include "strvy/Scene/ScriptableEntity.h"
+#include "strvy/Scene/Components.h"
+
 // ----Renderer--------------------
 #include "strvy/Renderer/Renderer.h"
 #include "strvy/Renderer/Renderer2D.h"
