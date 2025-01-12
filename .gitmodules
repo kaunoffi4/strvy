@@ -4,3 +4,6 @@
 [submodule "strvy/vendor/glm"]
 	path = strvy/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "strvy/vendor/imgui"]
+	path = strvy/vendor/imgui
+	url = https://github.com/kaunoffi4/imgui.git
