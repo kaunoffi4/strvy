@@ -147,7 +147,7 @@ namespace strvy {
 		}
 
 		// When using ImGuiDockNodeFlags_PassthruDockspace, DockSpace() will render our background and handle the pass-thru hole, so we ask Begin() to not render a background.
-		if (opt_flags & ImGuiDockNodeFlags_PassthruDockspace)
+		if (opt_flags) // before: if (opt_flags & ImGuiDockNodeFlags_PassthruDockspace)
 			window_flags |= ImGuiWindowFlags_NoBackground;
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -233,7 +233,7 @@ namespace strvy {
 
 		SV_WARN("Viewport Size: {0}, {1}", viewportPanelSize.x, viewportPanelSize.y);
 		uint32_t textureID = m_framebuffer->getColorAttachmentRendererID();
-		ImGui::Image((void*)textureID, ImVec2{ m_viewportSize.x, m_viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImGui::Image(textureID, ImVec2{ m_viewportSize.x, m_viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 		ImGui::End();
 		ImGui::PopStyleVar();
