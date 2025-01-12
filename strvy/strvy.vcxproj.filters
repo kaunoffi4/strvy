@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
@@ -141,6 +141,9 @@
     <ClInclude Include="src\strvy\Renderer\Buffer.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Camera.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Framebuffer.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
@@ -177,7 +180,19 @@
     <ClInclude Include="src\strvy\Renderer\VertexArray.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Scene\Components.h">
+      <Filter>src\strvy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Scene\Entity.h">
+      <Filter>src\strvy\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Scene\Scene.h">
+      <Filter>src\strvy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Scene\SceneCamera.h">
+      <Filter>src\strvy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Scene\ScriptableEntity.h">
       <Filter>src\strvy\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\svpch.h">
@@ -1434,12 +1449,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\entt\include\entt.hpp" />
-    <ClInclude Include="src\strvy\Scene\Components.h" />
-    <ClInclude Include="src\strvy\Scene\Entity.h" />
-    <ClInclude Include="src\strvy\Renderer\Camera.h" />
-    <ClInclude Include="src\strvy\Scene\SceneCamera.h" />
-    <ClInclude Include="src\strvy\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1523,7 +1532,13 @@
     <ClCompile Include="src\strvy\Renderer\VertexArray.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\strvy\Scene\Entity.cpp">
+      <Filter>src\strvy\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\strvy\Scene\Scene.cpp">
+      <Filter>src\strvy\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Scene\SceneCamera.cpp">
       <Filter>src\strvy\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\svpch.cpp">
@@ -1532,7 +1547,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\strvy\Scene\Entity.cpp" />
-    <ClCompile Include="src\strvy\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>

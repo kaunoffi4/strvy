@@ -1,6 +1,6 @@
 workspace "strvy"
     architecture "x64"
-    startproject "Game"
+    startproject "Strvy-Editor"
 
     configurations
     {

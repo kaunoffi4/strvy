@@ -152,7 +152,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\strvy.h" />
-    <ClInclude Include="src\strvy\Renderer\Camera.h" />
     <ClInclude Include="src\strvy\Core\Application.h" />
     <ClInclude Include="src\strvy\Core\Core.h" />
     <ClInclude Include="src\strvy\Core\EntryPoint.h" />
@@ -171,6 +170,7 @@
     <ClInclude Include="src\strvy\Events\MouseEvent.h" />
     <ClInclude Include="src\strvy\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\strvy\Renderer\Buffer.h" />
+    <ClInclude Include="src\strvy\Renderer\Camera.h" />
     <ClInclude Include="src\strvy\Renderer\Framebuffer.h" />
     <ClInclude Include="src\strvy\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\strvy\Renderer\OrthographicCamera.h" />
@@ -189,7 +189,6 @@
     <ClInclude Include="src\strvy\Scene\SceneCamera.h" />
     <ClInclude Include="src\strvy\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\svpch.h" />
-    <ClInclude Include="vendor\entt\include\entt.hpp" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
