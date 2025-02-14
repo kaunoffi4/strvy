@@ -1,6 +1,5 @@
 #include "svpch.h"
 #include "OpenGLShader.h"
-
 #include <glad/glad.h>
 
 #include <glm/gtc/type_ptr.hpp>
@@ -32,6 +31,8 @@ namespace strvy {
 		auto lastDot = filepath.rfind('.'); // the same as find_last_of()
 		auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
 		m_name = filepath.substr(lastSlash, count);
+		// "u_ViewProjection"
+		m_VPLocation = glGetUniformLocation(m_rendererID, "u_ViewProjection");
 	}
 
 
@@ -276,8 +277,16 @@ namespace strvy {
 
 	void OpenGLShader::uploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 	{
-		GLint location = glGetUniformLocation(m_rendererID, name.c_str());
-		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+		SV_PROFILE_SCOPE("uploadUniformMat4");
+		GLint location;
+		if (name == "u_ViewProjection")
+		{
+			location = m_VPLocation;
+		}
+		else
+			location = glGetUniformLocation(m_rendererID, name.c_str());
+
+		glUniformMatrix4fv(m_VPLocation, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
 }

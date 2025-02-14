@@ -5,6 +5,9 @@
 
 // TODO: remove
 typedef unsigned int GLenum;
+typedef int GLint;
+
+
 
 namespace strvy {
 
@@ -45,5 +48,6 @@ namespace strvy {
 	private:
 		uint32_t m_rendererID;
 		std::string m_name;
+		GLint m_VPLocation;
 	};
 }

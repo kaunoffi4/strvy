@@ -36,10 +36,10 @@ namespace strvy {
 
 		m_squareEntity = square;
 
-		m_cameraEntity = m_activeScene->createEntity("Camera Entity");
+		m_cameraEntity = m_activeScene->createEntity("Camera A");
 		m_cameraEntity.addComponent<CameraComponent>();
 
-		m_secondCamera = m_activeScene->createEntity("Clip-Space Entity");
+		m_secondCamera = m_activeScene->createEntity("Camera B");
 		auto& cc = m_secondCamera.addComponent<CameraComponent>();
 		cc.primary = false;
 		//m_spriteSheet = Texture2D::create("assets/textures/sheet.png");
@@ -51,8 +51,8 @@ namespace strvy {
 		public:
 			void onCreate() 
 			{
-				auto& transform = getComponent<TransformComponent>().transform;
-				transform[3][0] = rand() % 10 - 5.0f;
+				auto& translation = getComponent<TransformComponent>().translation;
+				translation.x = rand() % 10 - 5.0f;
 			}
 
 			void onDestroy() 
@@ -62,17 +62,17 @@ namespace strvy {
 
 			void onUpdate(Timestep ts) 
 			{
-				auto& transform = getComponent<TransformComponent>().transform;
+				auto& translation = getComponent<TransformComponent>().translation;
 				float speed = 5.0f;
 
 				if (Input::isKeyPressed(SV_KEY_A))
-					transform[3][0] -= speed * ts;
+					translation.x -= speed * ts;
 				if (Input::isKeyPressed(SV_KEY_D))
-					transform[3][0] += speed * ts;
+					translation.x += speed * ts;
 				if (Input::isKeyPressed(SV_KEY_W))
-					transform[3][1] += speed * ts;
+					translation.y += speed * ts;
 				if (Input::isKeyPressed(SV_KEY_S))
-					transform[3][1] -= speed * ts;
+					translation.y -= speed * ts;
 			}
 
 		};
@@ -80,6 +80,7 @@ namespace strvy {
 		m_secondCamera.addComponent<NativeScriptComponent>().bind<CameraController>();
 		m_cameraEntity.addComponent<NativeScriptComponent>().bind<CameraController>();
 
+		m_sceneHierarchyPanel.setContext(m_activeScene);
 	}
 
 	void EditorLayer::onDetach()
@@ -122,7 +123,7 @@ namespace strvy {
 		m_framebuffer->unbind();
 	}
 
-	void EditorLayer::onImGuiRender()
+	void EditorLayer::onImGuiRender(Timestep ts)
 	{
 		SV_PROFILE_FUNCTION();
 
@@ -159,11 +160,17 @@ namespace strvy {
 
 		// Dockspace
 		ImGuiIO& io = ImGui::GetIO();
+		ImGuiStyle& style = ImGui::GetStyle();
+		float minWinSizeX = style.WindowMinSize.x;
+		style.WindowMinSize.x = 370.0f;
+
 		if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
 		{
 			ImGuiID dockspace_id = ImGui::GetID("MyDockspace");
 			ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), opt_flags);
 		}
+		style.WindowMinSize.x = minWinSizeX;
+
 
 		if (ImGui::BeginMenuBar())
 		{
@@ -182,44 +189,19 @@ namespace strvy {
 
 		ImGui::End();
 
-		ImGui::Begin("Settings");
+		m_sceneHierarchyPanel.onImGuiRender();
+
+		ImGui::Begin("render stats");
 
 		auto stats = Renderer2D::getStats();
 		ImGui::Text("Renderer2D stats:");
+		ImGui::Text("FPS: %.1f", (1000.0f / ts.getMilliseconds()));
 		ImGui::Text("Draw calls: %d", stats.drawCalls);
 		ImGui::Text("Quads: %d", stats.quadCount);
 		ImGui::Text("Vertices: %d", stats.getTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.getTotalIndexCount());
 
-		
-		{
-			ImGui::Separator();
-			ImGui::Text("%s", m_squareEntity.getComponent<TagComponent>().tag.c_str());
-
-			auto& squareColor = m_squareEntity.getComponent<SpriteRendererComponent>().color;
-			ImGui::ColorEdit4("Square color", glm::value_ptr(squareColor));
-
-			ImGui::Separator();
-		}
-
-		ImGui::DragFloat3("Camera Transform",
-			glm::value_ptr(m_cameraEntity.getComponent<TransformComponent>().transform[3]));
-
-		if (ImGui::Checkbox("Camera A", &m_primaryCamera))
-		{
-			m_cameraEntity.getComponent<CameraComponent>().primary = m_primaryCamera;
-			m_secondCamera.getComponent<CameraComponent>().primary = !m_primaryCamera;
-		}
-
-		{
-			auto& camera = m_secondCamera.getComponent<CameraComponent>().camera;
-			float orthoSize = camera.getOrthographicSize();
-			if (ImGui::DragFloat("Second camera ortho size", &orthoSize))
-				camera.setOrthographicSize(orthoSize);
-		}
-
 		ImGui::End();
-
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");

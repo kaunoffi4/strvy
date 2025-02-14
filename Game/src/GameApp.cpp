@@ -189,7 +189,7 @@ public:
 		strvy::Renderer::endScene();
 	}
 
-	virtual void onImGuiRender() override
+	virtual void onImGuiRender(strvy::Timestep ts) override
 	{
 		ImGui::Begin("Settings");
 		ImGui::ColorEdit3("Square color", glm::value_ptr(m_squareColor));

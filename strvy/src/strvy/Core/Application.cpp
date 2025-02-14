@@ -102,7 +102,7 @@ namespace strvy {
 					SV_PROFILE_SCOPE("LayerStack onImGuiRender");
 
 					for (Layer* layer : m_layerStack)
-						layer->onImGuiRender();
+						layer->onImGuiRender(timestep);
 				}
 				m_ImGuiLayer->end();
 			}

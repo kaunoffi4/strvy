@@ -18,12 +18,14 @@ IncludeDir["ImGui"] = "strvy/vendor/imgui"
 IncludeDir["glm"] = "strvy/vendor/glm"
 IncludeDir["stb_image"] = "strvy/vendor/stb_image"
 IncludeDir["entt"] = "strvy/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "strvy/vendor/yaml-cpp/include"
 
 
 group "Dependencies"
     include "strvy/vendor/GLFW"
     include "strvy/vendor/Glad"
     include "strvy/vendor/imgui"
+    include "strvy/vendor/yaml-cpp"
 
 
 
@@ -60,7 +62,9 @@ project "strvy"
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.stb_image}",
-        "%{IncludeDir.entt}"
+        "%{IncludeDir.entt}",
+        "%{IncludeDir.yaml_cpp}"
+
     }
 
     links
@@ -68,7 +72,8 @@ project "strvy"
         "Glad",
         "GLFW",
         "ImGui",
-        "opengl32.lib"
+        "opengl32.lib",
+        "yaml-cpp"
     }
 
     defines

@@ -10,3 +10,6 @@
 [submodule "strvy/vendor/GLFW"]
 	path = strvy/vendor/GLFW
 	url = https://github.com/kaunoffi4/glfw.git
+[submodule "strvy/vendor/yaml-cpp"]
+	path = strvy/vendor/yaml-cpp
+	url = https://github.com/kaunoffi4/yaml-cpp

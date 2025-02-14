@@ -10,8 +10,19 @@ namespace strvy {
 		recalculateProjection();
 	}
 
+	void SceneCamera::setPerspective(float verticalFOV, float nearClip, float farClip)
+	{
+		m_projectionType = ProjectionType::Perspective;
+		m_perspectiveFOV = verticalFOV;
+		m_perspectiveNear = nearClip;
+		m_perspectiveFar = farClip;
+
+		recalculateProjection();
+	}
+
 	void SceneCamera::setOrthographic(float size, float nearClip, float farClip)
 	{
+		m_projectionType = ProjectionType::Orthographic;
 		m_orthoSize = size;
 		m_orthoNear = nearClip;
 		m_orthoFar = farClip;
@@ -28,12 +39,19 @@ namespace strvy {
 
 	void SceneCamera::recalculateProjection()
 	{
-		float orthoLeft = -m_orthoSize * m_aspectRatio * 0.5f;
-		float orthoRight = m_orthoSize * m_aspectRatio * 0.5f;
-		float orthoBottom = -m_orthoSize * 0.5f;
-		float orthoTop = m_orthoSize * 0.5f;
+		if (m_projectionType == ProjectionType::Perspective)
+		{
+			m_projection = glm::perspective(m_perspectiveFOV, m_aspectRatio, m_perspectiveNear, m_perspectiveFar);
+		}
+		else
+		{
+			float orthoLeft = -m_orthoSize * m_aspectRatio * 0.5f;
+			float orthoRight = m_orthoSize * m_aspectRatio * 0.5f;
+			float orthoBottom = -m_orthoSize * 0.5f;
+			float orthoTop = m_orthoSize * 0.5f;
 
-		m_projection = glm::ortho(orthoLeft, orthoRight, orthoBottom, orthoTop, m_orthoNear, m_orthoFar);
+			m_projection = glm::ortho(orthoLeft, orthoRight, orthoBottom, orthoTop, m_orthoNear, m_orthoFar);
+		}
 	}
 
 }

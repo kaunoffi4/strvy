@@ -1,6 +1,7 @@
 #pragma once
 
 #include "strvy.h"
+#include "Panels/SceneHierarchyPanel.h"
 
 namespace strvy {
 
@@ -14,7 +15,7 @@ namespace strvy {
 		virtual void onDetach() override;
 
 		void onUpdate(strvy::Timestep ts) override;
-		virtual void onImGuiRender() override;
+		virtual void onImGuiRender(Timestep ts) override;
 		void onEvent(strvy::Event& e) override;
 	private:
 		OrthographicCameraController m_cameraController;
@@ -37,5 +38,8 @@ namespace strvy {
 		Ref<Texture2D> m_checkerboardTexture;
 
 		glm::vec4 m_squareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+		// Panels
+		SceneHierarchyPanel m_sceneHierarchyPanel;
 	};
 }

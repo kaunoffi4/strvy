@@ -14,7 +14,7 @@ public:
 	virtual void onDetach() override;
 
 	void onUpdate(strvy::Timestep ts) override;
-	virtual void onImGuiRender() override;
+	virtual void onImGuiRender(strvy::Timestep ts) override;
 	void onEvent(strvy::Event& e) override;
 private:
 	strvy::OrthographicCameraController m_cameraController;

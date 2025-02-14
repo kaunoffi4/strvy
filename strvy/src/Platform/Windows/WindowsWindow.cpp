@@ -70,7 +70,7 @@ namespace strvy {
 		m_context->init();
 
 		glfwSetWindowUserPointer(m_window, &m_data);
-		setVSync(true);
+		setVSync(false);
 
 		// set GLFW callbacks
 		glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) 

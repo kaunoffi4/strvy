@@ -16,7 +16,7 @@ namespace strvy {
 		virtual void onAttach() {}
 		virtual void onDetach() {}
 		virtual void onUpdate(Timestep ts) {}
-		virtual void onImGuiRender() {}
+		virtual void onImGuiRender(Timestep ts) {}
 		virtual void onEvent(Event& event) {}
 
 		inline const std::string& getName() const { return m_debugName; }

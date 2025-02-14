@@ -22,6 +22,7 @@ namespace strvy {
 		void end();
 
 		void blockEvents(bool block) { m_blockEvents = block; }
+		void setDarkThemeColors();
 
 	private:
 		float m_Time = 0.0f;

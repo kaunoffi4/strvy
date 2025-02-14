@@ -99,7 +99,7 @@ void Sandbox2D::onUpdate(strvy::Timestep ts)
 	m_particleSystem.OnRender(m_cameraController.getCamera());
 }
 
-void Sandbox2D::onImGuiRender()
+void Sandbox2D::onImGuiRender(strvy::Timestep ts)
 {
 	SV_PROFILE_FUNCTION();
 	
