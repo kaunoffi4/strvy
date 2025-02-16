@@ -1,5 +1,5 @@
 # strvy
-2D basic engine with support for extension to 3D rendering due to the modularity of the project architecture.
+Basic 2D engine with support for extension to 3D rendering due to the modularity of the project architecture.
 
 
 # How to set up 
@@ -11,6 +11,8 @@ If the repository was cloned non-recursively previously, use `git submodule upda
 Execute `Win-GenProjects.bat` script file, which will then generate a Visual Studio solution file for user's usage.
 
 If changes are made, or if you want to regenerate project files, rerun the Win-GenProjects.bat script file found in scripts folder.
+
+At this point if you did previous steps, you should be able to run and see a window, with some rendering and UI.
 
 
 # Overview
