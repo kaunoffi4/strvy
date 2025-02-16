@@ -4,8 +4,10 @@
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
-#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp> 
 #include <glm/gtc/type_ptr.hpp>
+
+#include "strvy/Scene/SceneSerializer.h"
 
 namespace strvy {
 
@@ -29,6 +31,7 @@ namespace strvy {
 
 		m_activeScene = createRef<Scene>();
 		
+#if 0
 		// Entity
 		auto square = m_activeScene->createEntity("Green Square");
 
@@ -79,6 +82,7 @@ namespace strvy {
 
 		m_secondCamera.addComponent<NativeScriptComponent>().bind<CameraController>();
 		m_cameraEntity.addComponent<NativeScriptComponent>().bind<CameraController>();
+#endif
 
 		m_sceneHierarchyPanel.setContext(m_activeScene);
 	}
@@ -179,6 +183,18 @@ namespace strvy {
 				// Disabling fullscreen would allow the window to be moved to the front of other windows, 
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
+
+				if (ImGui::MenuItem("Serialize"))
+				{
+					SceneSerializer serializer(m_activeScene);
+					serializer.serialize("assets/scenes/Example.strvy");
+				}
+
+				if (ImGui::MenuItem("Deserialize"))
+				{
+					SceneSerializer serializer(m_activeScene);
+					serializer.deserialize("assets/scenes/Example.strvy");
+				}
 
 				if (ImGui::MenuItem("Exit")) Application::get().close();
 				ImGui::EndMenu();

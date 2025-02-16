@@ -192,6 +192,9 @@
     <ClInclude Include="src\strvy\Scene\SceneCamera.h">
       <Filter>src\strvy\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Scene\SceneSerializer.h">
+      <Filter>src\strvy\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Scene\ScriptableEntity.h">
       <Filter>src\strvy\Scene</Filter>
     </ClInclude>
@@ -1539,6 +1542,9 @@
       <Filter>src\strvy\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Scene\SceneCamera.cpp">
+      <Filter>src\strvy\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Scene\SceneSerializer.cpp">
       <Filter>src\strvy\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\svpch.cpp">
