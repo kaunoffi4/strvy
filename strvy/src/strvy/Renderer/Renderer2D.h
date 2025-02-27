@@ -6,6 +6,7 @@
 #include "SubTexture2D.h"
 
 #include "strvy/Renderer/Camera.h"
+#include "strvy/Renderer/EditorCamera.h"
 
 namespace strvy {
 	
@@ -16,6 +17,7 @@ namespace strvy {
 		static void shutdown();
 
 		static void beginScene(const Camera& camera, const glm::mat4& transform);
+		static void beginScene(const EditorCamera& camera);
 		static void beginScene(const OrthographicCamera& camera); // TODO: remove
 		static void endScene();
 		static void flush();

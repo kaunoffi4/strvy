@@ -16,9 +16,10 @@ namespace strvy {
 
 		std::string toString() const override
 		{
-			std::stringstream ss;
-			ss << "MouseMovedEvent: " << m_mouseX << ", " << m_mouseY;
-			return ss.str();
+			//std::stringstream ss;
+			//ss << "MouseMovedEvent: " << m_mouseX << ", " << m_mouseY;
+			//return ss.str();
+			return std::string();
 		}
 
 		EVENT_CLASS_TYPE(MouseMoved)
@@ -39,9 +40,10 @@ namespace strvy {
 
 		std::string toString() const override
 		{
-			std::stringstream ss;
-			ss << "MouseScrolledEvent: " << getXOffset() << ", " << getYOffset();
-			return ss.str();
+			//std::stringstream ss;
+			//ss << "MouseScrolledEvent: " << getXOffset() << ", " << getYOffset();
+			//return ss.str();
+			return std::string();
 		}
 
 	EVENT_CLASS_TYPE(MouseScrolled)
@@ -71,9 +73,10 @@ namespace strvy {
 
 		std::string toString() const override
 		{
-			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_button;
-			return ss.str();
+			//std::stringstream ss;
+			//ss << "MouseButtonPressedEvent: " << m_button;
+			//return ss.str();
+			return std::string();
 		}
 
 		EVENT_CLASS_TYPE(MouseButtonPressed)
@@ -87,9 +90,10 @@ namespace strvy {
 
 		std::string toString() const override
 		{
-			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_button;
-			return ss.str();
+			//std::stringstream ss;
+			//ss << "MouseButtonReleasedEvent: " << m_button;
+			//return ss.str();
+			return std::string();
 		}
 
 		EVENT_CLASS_TYPE(MouseButtonReleased)

@@ -16,6 +16,7 @@ namespace strvy {
 		void setContext(const Ref<Scene>& context);
 
 		void onImGuiRender();
+		Entity getSelectedEntity() const { return m_selectionContext; }
 	private:
 		void drawEntityNode(Entity entity);
 		void drawComponents(Entity entity);

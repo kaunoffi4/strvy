@@ -130,6 +130,21 @@ namespace strvy {
 		s_data.textureSlotIndex = 1;
 	}
 
+	void Renderer2D::beginScene(const EditorCamera& camera)
+	{
+		SV_PROFILE_FUNCTION();
+
+		glm::mat4 viewProj = camera.getViewProjection();
+
+		s_data.textureShader->bind();
+		s_data.textureShader->setMat4("u_ViewProjection", viewProj);
+
+		s_data.quadIndexCount = 0;
+		s_data.quadVertexBufferPtr = s_data.quadVertexBufferBase;
+
+		s_data.textureSlotIndex = 1;
+	}
+
 	void Renderer2D::beginScene(const OrthographicCamera& camera)
 	{
 		SV_PROFILE_FUNCTION();

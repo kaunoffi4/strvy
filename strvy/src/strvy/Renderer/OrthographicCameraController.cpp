@@ -17,23 +17,23 @@ namespace strvy {
 		SV_PROFILE_FUNCTION();
 
 
-		if (Input::isKeyPressed(SV_KEY_W))
+		if (Input::isKeyPressed(Key::W))
 			m_cameraPosition.y += m_cameraTranslationSpeed * ts;
-		else if (Input::isKeyPressed(SV_KEY_S))
+		else if (Input::isKeyPressed(Key::S))
 			m_cameraPosition.y -= m_cameraTranslationSpeed * ts;
 
-		if (Input::isKeyPressed(SV_KEY_A))
+		if (Input::isKeyPressed(Key::A))
 			m_cameraPosition.x -= m_cameraTranslationSpeed * ts;
-		else if (Input::isKeyPressed(SV_KEY_D))
+		else if (Input::isKeyPressed(Key::D))
 			m_cameraPosition.x += m_cameraTranslationSpeed * ts;
 
 		if (m_rotation)
 		{
-			if (Input::isKeyPressed(SV_KEY_Q))
+			if (Input::isKeyPressed(Key::Q))
 			{
 				m_cameraRotation += m_cameraRotationSpeed * ts;
 			}
-			if (Input::isKeyPressed(SV_KEY_E))
+			if (Input::isKeyPressed(Key::E))
 			{ 
 				m_cameraRotation -= m_cameraRotationSpeed * ts;
 			}

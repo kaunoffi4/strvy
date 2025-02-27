@@ -5,6 +5,7 @@
 #include "Renderer2D.h"
 
 
+
 namespace strvy {
 
 	Renderer::SceneData* Renderer::m_sceneData = new Renderer::SceneData;

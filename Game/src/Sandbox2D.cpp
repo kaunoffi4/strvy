@@ -7,6 +7,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "strvy/Core/MouseButtonCodes.h"
+
 
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_cameraController(1280.0f / 720.0f, true)
@@ -80,7 +82,7 @@ void Sandbox2D::onUpdate(strvy::Timestep ts)
 	}
 
 	// Particle
-	if (strvy::Input::isMouseButtonPressed(SV_MOUSE_BUTTON_LEFT))
+	if (strvy::Input::isMouseButtonPressed(strvy::Mouse::ButtonLeft))
 	{
 		auto [x, y] = strvy::Input::getMousePosition();
 		auto width = strvy::Application::get().getWindow().getWidth();

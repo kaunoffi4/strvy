@@ -1,8 +1,9 @@
 #pragma once
 
-#include "entt.hpp"
-
 #include "strvy/Core/Timestep.h"
+#include "strvy/Renderer/EditorCamera.h"
+
+#include "entt.hpp"
 
 namespace strvy {
 
@@ -17,8 +18,11 @@ namespace strvy {
 		Entity createEntity(const std::string& name = std::string());
 		void destroyEntity(Entity entity);
 
-		void onUpdate(Timestep ts);
+		void onUpdateRuntime(Timestep ts);
+		void onUpdateEditor(Timestep ts, EditorCamera& camera);
 		void onViewportResize(uint32_t width, uint32_t height);
+
+		Entity getPrimaryCameraEntity();
 	private:
 		template<typename T>
 		void onComponentAdded(Entity entity, T& component);

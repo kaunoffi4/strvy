@@ -9,6 +9,12 @@
 
 #include "strvy/Scene/SceneSerializer.h"
 
+#include "strvy/Utils/PlatformUtils.h"
+
+#include "ImGuizmo.h"
+
+#include "strvy/Math/Math.h"
+
 namespace strvy {
 
 
@@ -23,14 +29,15 @@ namespace strvy {
 
 		m_checkerboardTexture = Texture2D::create("assets/textures/checkerboards.png");
 
-		FramebufferSpecification fb_spec;
-		fb_spec.width = 1280;
-		fb_spec.height = 720;
-		m_framebuffer = Framebuffer::create(fb_spec);
-
+		FramebufferSpecification fbSpec;
+		fbSpec.attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
+		fbSpec.width = 1280;
+		fbSpec.height = 720;
+		m_framebuffer = Framebuffer::create(fbSpec);
 
 		m_activeScene = createRef<Scene>();
-		
+
+		m_editorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 #if 0
 		// Entity
 		auto square = m_activeScene->createEntity("Green Square");
@@ -104,14 +111,19 @@ namespace strvy {
 		{
 			m_framebuffer->resize((uint32_t)m_viewportSize.x, (uint32_t)m_viewportSize.y);
 			m_cameraController.onResize(m_viewportSize.x, m_viewportSize.y);
+			m_editorCamera.setViewportSize(m_viewportSize.x, m_viewportSize.y);
 
 			m_activeScene->onViewportResize((uint32_t)m_viewportSize.x, (uint32_t)m_viewportSize.y);
 		}
 
 
 		// Update
-		if(m_viewportFocused)
+		if (m_viewportFocused)
+		{
 			m_cameraController.onUpdate(ts);
+			m_editorCamera.onUpdate(ts);
+		}
+
 
 		// Render
 
@@ -122,7 +134,23 @@ namespace strvy {
 
 		
 		// Update scene
-		m_activeScene->onUpdate(ts);
+		m_activeScene->onUpdateEditor(ts, m_editorCamera);
+
+		auto[mx, my] = ImGui::GetMousePos();
+		mx -= m_viewportBounds[0].x;
+		my -= m_viewportBounds[0].y;
+		glm::vec2 viewportSize = m_viewportBounds[1] - m_viewportBounds[0];
+
+		my = viewportSize.y - my;
+		int mouseX = (int)mx;
+		int mouseY = (int)my;
+
+		if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
+		{
+			int pixelData = m_framebuffer->readPixel(1, mouseX, mouseY);
+			SV_CORE_WARN("Pixel data = {0}", pixelData);
+		}
+
 
 		m_framebuffer->unbind();
 	}
@@ -184,17 +212,14 @@ namespace strvy {
 				// which we can't undo at the moment without finer window depth/z control.
 				//ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
-				if (ImGui::MenuItem("Serialize"))
-				{
-					SceneSerializer serializer(m_activeScene);
-					serializer.serialize("assets/scenes/Example.strvy");
-				}
+				if (ImGui::MenuItem("New", "Ctrl+N"))
+					newScene();
 
-				if (ImGui::MenuItem("Deserialize"))
-				{
-					SceneSerializer serializer(m_activeScene);
-					serializer.deserialize("assets/scenes/Example.strvy");
-				}
+				if (ImGui::MenuItem("Open...", "Ctrl+O"))
+					openScene();
+
+				if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+					saveSceneAs();
 
 				if (ImGui::MenuItem("Exit")) Application::get().close();
 				ImGui::EndMenu();
@@ -221,17 +246,84 @@ namespace strvy {
 
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
+		auto viewportOffset = ImGui::GetCursorPos(); // Includes tab bar
 
 		m_viewportFocused = ImGui::IsWindowFocused();
 		m_viewportHovered = ImGui::IsWindowHovered();
-		Application::get().getImGuiLayer()->blockEvents(!m_viewportFocused || !m_viewportHovered);
+		Application::get().getImGuiLayer()->blockEvents(!m_viewportFocused && !m_viewportHovered);
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail(); // check what this does
 		m_viewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
-		SV_WARN("Viewport Size: {0}, {1}", viewportPanelSize.x, viewportPanelSize.y);
+		//SV_WARN("Viewport Size: {0}, {1}", viewportPanelSize.x, viewportPanelSize.y);
 		uint32_t textureID = m_framebuffer->getColorAttachmentRendererID();
 		ImGui::Image(textureID, ImVec2{ m_viewportSize.x, m_viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+		auto windowSize = ImGui::GetWindowSize();
+		ImVec2 minBound = ImGui::GetWindowPos();
+		minBound.x += viewportOffset.x;
+		minBound.y += viewportOffset.y;
+
+		ImVec2 maxBound = { minBound.x + windowSize.x, minBound.y + windowSize.y };
+		m_viewportBounds[0] = { minBound.x, minBound.y };
+		m_viewportBounds[1] = { maxBound.x, maxBound.y };
+
+
+		// Gizmos
+		Entity selectedEntity = m_sceneHierarchyPanel.getSelectedEntity();
+		if (selectedEntity && m_gizmoType != -1)
+		{
+			ImGuizmo::SetOrthographic(false);
+			ImGuizmo::SetDrawlist();
+
+			float windowWidth = (float)ImGui::GetWindowWidth();
+			float windowHeight = (float)ImGui::GetWindowHeight();
+			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
+
+			// Camera
+			 			 
+			// Runtime camera from entity
+			//auto cameraEntity = m_activeScene->getPrimaryCameraEntity();
+			//const auto& camera = cameraEntity.getComponent<CameraComponent>().camera;
+			//const glm::mat4& cameraProjection = camera.getProjection();
+			//glm::mat4 cameraView = glm::inverse(cameraEntity.getComponent<TransformComponent>().getTransform());
+
+			// Editor camera 
+			const glm::mat4& cameraProjection = m_editorCamera.getProjection();
+			glm::mat4 cameraView = m_editorCamera.getViewMatrix();
+
+			// Entity transform
+			auto& tc = selectedEntity.getComponent<TransformComponent>();
+			glm::mat4 transform = tc.getTransform();
+
+			// Snapping 
+			bool snap = Input::isKeyPressed(Key::LeftControl);
+			float snapValue = 0.5f; // snap to 0.5m for translation/scale
+			// snap to 45 degrees for rotation
+			if (m_gizmoType == ImGuizmo::OPERATION::ROTATE)
+				snapValue = 45.0f;
+
+			float snapValues[3] = { snapValue, snapValue, snapValue };
+
+			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection), 
+				(ImGuizmo::OPERATION)m_gizmoType, ImGuizmo::LOCAL, glm::value_ptr(transform),
+				nullptr, snap ? snapValues : nullptr);
+
+			if (ImGuizmo::IsUsing)
+			{
+
+				glm::vec3 translation, rotation, scale;
+				Math::decomposeTransform(transform, translation, rotation, scale);
+
+				glm::vec3 deltaRotation = rotation - tc.rotation;
+				tc.translation = translation;
+				tc.rotation += deltaRotation;
+				tc.scale = scale;
+			}
+
+
+		}
+
 
 		ImGui::End();
 		ImGui::PopStyleVar();
@@ -241,5 +333,92 @@ namespace strvy {
 	void EditorLayer::onEvent(Event& e)
 	{
 		m_cameraController.onEvent(e);
+		m_editorCamera.onEvent(e);
+
+		EventDispatcher dispatcher(e);
+		dispatcher.dispatch<KeyPressedEvent>(SV_BIND_EVENT_FN(EditorLayer::onKeyPressed));
+	}
+
+	bool EditorLayer::onKeyPressed(KeyPressedEvent& e)
+	{
+		// Shortcuts
+		if (e.getRepeatCount() > 0)
+			return false;
+
+		bool control = Input::isKeyPressed(Key::LeftControl) || Input::isKeyPressed(Key::RightControl);
+		bool shift = Input::isKeyPressed(Key::LeftShift) || Input::isKeyPressed(Key::RightShift);
+
+		switch (e.getKeyCode())
+		{
+			case Key::N:
+			{
+				if (control)
+					newScene();
+				break;
+			}
+			case Key::O:
+			{
+				if (control)
+					openScene();
+
+				break;
+			}
+			case Key::S:
+			{
+				if (control && shift)
+					saveSceneAs();
+
+				break;
+			}
+
+			// Gizmos
+			case Key::Q:
+				m_gizmoType = -1;
+				break;
+			case Key::W:
+				m_gizmoType = ImGuizmo::OPERATION::TRANSLATE;
+				break;
+			case Key::E:
+				m_gizmoType = ImGuizmo::OPERATION::ROTATE;
+				break;
+			case Key::R:
+				m_gizmoType = ImGuizmo::OPERATION::SCALE;
+				break;
+
+		}
+
+		return false;
+	}
+
+	void EditorLayer::newScene()
+	{
+		m_activeScene = createRef<Scene>();
+		m_activeScene->onViewportResize((uint32_t)m_viewportSize.x, (uint32_t)m_viewportSize.y);
+		m_sceneHierarchyPanel.setContext(m_activeScene);
+	}
+
+	void EditorLayer::openScene()
+	{
+		std::string filepath = FileDialogs::openFile("Strvy Scene (*.strvy)\0*.strvy\0");
+		if (!filepath.empty())
+		{
+			m_activeScene = createRef<Scene>();
+			m_activeScene->onViewportResize((uint32_t)m_viewportSize.x, (uint32_t)m_viewportSize.y);
+			m_sceneHierarchyPanel.setContext(m_activeScene);
+
+			SceneSerializer serializer(m_activeScene);
+			serializer.deserialize(filepath);
+		}
+	}
+
+	void EditorLayer::saveSceneAs()
+	{
+		std::string filepath = FileDialogs::saveFile("Strvy Scene (*.strvy)\0*.strvy\0");
+
+		if (!filepath.empty())
+		{
+			SceneSerializer serializer(m_activeScene);
+			serializer.serialize(filepath);
+		}
 	}
 }

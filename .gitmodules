@@ -13,3 +13,6 @@
 [submodule "strvy/vendor/yaml-cpp"]
 	path = strvy/vendor/yaml-cpp
 	url = https://github.com/kaunoffi4/yaml-cpp
+[submodule "strvy/vendor/ImGuizmo"]
+	path = strvy/vendor/ImGuizmo
+	url = https://github.com/kaunoffi4/ImGuizmo.git
