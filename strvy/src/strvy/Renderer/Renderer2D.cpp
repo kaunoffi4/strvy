@@ -19,6 +19,9 @@ namespace strvy {
 		glm::vec2 texCoord;
 		float texIndex;
 		float tilingFactor;
+
+		// Editor only
+		int entityID;
 	};
 
 	struct Renderer2DData
@@ -61,7 +64,8 @@ namespace strvy {
 			{ ShaderDataType::Float4, "a_Color" },
 			{ ShaderDataType::Float2, "a_TexCoord" },
 			{ ShaderDataType::Float, "a_TexIndex" },
-			{ ShaderDataType::Float, "a_TilingFactor" }
+			{ ShaderDataType::Float, "a_TilingFactor" },
+			{ ShaderDataType::Int, "a_EntityID" }
 			});
 		s_data.quadVertexArray->addVertexBuffer(s_data.quadVertexBuffer);
 
@@ -249,7 +253,7 @@ namespace strvy {
 		drawQuad({ position.x, position.y, 0.0f }, size, subtexture, tilingFactor, tintColor);
 	}
 
-	void Renderer2D::drawQuad(const glm::mat4& transform, const glm::vec4& color)
+	void Renderer2D::drawQuad(const glm::mat4& transform, const glm::vec4& color, int entityID)
 	{
 		SV_PROFILE_FUNCTION();
 
@@ -269,6 +273,7 @@ namespace strvy {
 			s_data.quadVertexBufferPtr->texCoord = textureCoords[i];
 			s_data.quadVertexBufferPtr->texIndex = textureIndex;
 			s_data.quadVertexBufferPtr->tilingFactor = tilingFactor;
+			s_data.quadVertexBufferPtr->entityID = entityID;
 			s_data.quadVertexBufferPtr++;
 		}
 
@@ -277,7 +282,7 @@ namespace strvy {
 
 	}
 
-	void Renderer2D::drawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
+	void Renderer2D::drawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor, int entityID)
 	{
 		SV_PROFILE_FUNCTION();
 
@@ -315,11 +320,17 @@ namespace strvy {
 			s_data.quadVertexBufferPtr->texCoord = textureCoords[i];
 			s_data.quadVertexBufferPtr->texIndex = textureIndex;
 			s_data.quadVertexBufferPtr->tilingFactor = tilingFactor;
+			s_data.quadVertexBufferPtr->entityID = entityID;
 			s_data.quadVertexBufferPtr++;
 		}
 
 		s_data.quadIndexCount += 6;
 		s_data.stats.quadCount++;
+	}
+
+	void Renderer2D::drawSprite(const glm::mat4& transform, SpriteRendererComponent& src, int entityID)
+	{
+		drawQuad(transform, src.color, entityID);
 	}
 
 	void Renderer2D::drawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor)
@@ -551,6 +562,7 @@ namespace strvy {
 		s_data.quadIndexCount += 6;
 		s_data.stats.quadCount++;
 	}
+
 	void Renderer2D::resetStats()
 	{
 		memset(&s_data.stats, 0, sizeof(Statistics));

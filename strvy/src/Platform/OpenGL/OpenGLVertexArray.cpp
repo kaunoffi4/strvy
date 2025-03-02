@@ -64,20 +64,63 @@ namespace strvy {
 		glBindVertexArray(m_rendererID);
 		vertexBuffer->bind();
 
-		uint32_t index = 0;
 		const auto& layout = vertexBuffer->getLayout();
 		for (const auto& element : layout)
 		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
-				element.getComponentCount(),
-				ShaderDataTypeToOpenGLBaseType(element.type),
-				element.normalized ? GL_TRUE : GL_FALSE,
-				layout.getStride(),
-				(const void*)element.offset);
-			index++;
-		}
+			switch (element.type)
+			{
+				case ShaderDataType::Float:
+				case ShaderDataType::Float2:
+				case ShaderDataType::Float3:
+				case ShaderDataType::Float4:
+				{
+					glEnableVertexAttribArray(m_vertexBufferIndex);
+					glVertexAttribPointer(m_vertexBufferIndex,
+						element.getComponentCount(),
+						ShaderDataTypeToOpenGLBaseType(element.type),
+						element.normalized ? GL_TRUE : GL_FALSE,
+						layout.getStride(),
+						(const void*)element.offset);
+					m_vertexBufferIndex++;
+					break;
+				}
+				case ShaderDataType::Int:
+				case ShaderDataType::Int2:
+				case ShaderDataType::Int3:
+				case ShaderDataType::Int4:
+				case ShaderDataType::Bool:
+				{
+					glEnableVertexAttribArray(m_vertexBufferIndex);
+					glVertexAttribIPointer(m_vertexBufferIndex,
+						element.getComponentCount(),
+						ShaderDataTypeToOpenGLBaseType(element.type),
+						layout.getStride(),
+						(const void*)element.offset);
+					m_vertexBufferIndex++;
+					break;
+				}
+				case ShaderDataType::Mat3:
+				case ShaderDataType::Mat4:
+				{
+					uint8_t count = element.getComponentCount();
+					for (uint8_t i = 0; i < count; ++i)
+					{
+						glEnableVertexAttribArray(m_vertexBufferIndex);
+						glVertexAttribPointer(m_vertexBufferIndex,
+							count,
+							ShaderDataTypeToOpenGLBaseType(element.type),
+							element.normalized ? GL_TRUE : GL_FALSE,
+							layout.getStride(),
+							(const void*)(element.offset + sizeof(float) * count * i));
+						m_vertexBufferIndex++;
+					}
+					break;
+				}
+				default:
+					SV_CORE_ASSERT(false, "Uknown ShaderDataType!");
 
+			}
+		}
 		m_vertexBuffers.push_back(vertexBuffer);
 	}
 

@@ -21,12 +21,13 @@ namespace strvy {
 		void onEvent(strvy::Event& e) override;
 	private:
 		bool onKeyPressed(KeyPressedEvent& e);
+		bool onMouseButtonPressed(MouseButtonPressedEvent& e);
 
 		void newScene();
 		void openScene();
 		void saveSceneAs();
 	private:
-		OrthographicCameraController m_cameraController;
+		//OrthographicCameraController m_cameraController;
 
 		// Temp
 		Ref<VertexArray> m_squareVA;
@@ -34,18 +35,16 @@ namespace strvy {
 		Ref<Framebuffer> m_framebuffer;
 
 		Ref<Scene> m_activeScene;
-		Entity m_squareEntity;
-		Entity m_cameraEntity;
-		Entity m_secondCamera;
 
 		bool m_primaryCamera = true;
+
+		Entity m_hoveredEntity;
 
 		EditorCamera m_editorCamera;
 
 		bool m_viewportFocused = false, m_viewportHovered = false;
 		glm::vec2 m_viewportSize = { 0.0f, 0.0f };
 		glm::vec2 m_viewportBounds[2];
-
 
 		int m_gizmoType = -1;
 
