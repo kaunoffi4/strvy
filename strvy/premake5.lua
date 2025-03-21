@@ -4,7 +4,7 @@ project "strvy"
     language "C++"
     location "."
     cppdialect "C++17"
-    staticruntime "on"
+    staticruntime "off"
 
     targetdir("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
     objdir("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -37,7 +37,9 @@ project "strvy"
         "%{IncludeDir.stb_image}",
         "%{IncludeDir.entt}",
         "%{IncludeDir.yaml_cpp}",
-        "%{IncludeDir.ImGuizmo}"
+        "%{IncludeDir.ImGuizmo}",
+        "%{IncludeDir.VulkanSDK}",
+        "%{IncludeDir.Assimp}"
     }
 
     links
@@ -69,17 +71,41 @@ project "strvy"
             "GLFW_INCLUDE_NONE"
         }
 
-        filter "configurations:Debug"
-            defines "SV_DEBUG"
-            runtime "Debug"
-            symbols "on"
+    filter "configurations:Debug"
+		    defines "SV_DEBUG"
+		    runtime "Debug"
+		    symbols "on"
 
-        filter "configurations:Release"
-            defines "SV_RELEASE"
-            runtime "Release"
-            optimize "on"
+		    links
+		    {
+			    "%{Library.ShaderC_Debug}",
+			    "%{Library.SPIRV_Cross_Debug}",
+			    "%{Library.SPIRV_Cross_GLSL_Debug}",
+                "%{Library.Assimp_Debug}"
+		    }
 
-        filter "configurations:Dist"
-            defines "SV_DIST"
-            runtime "Release"
-            optimize "on"
+	    filter "configurations:Release"
+		    defines "SV_RELEASE"
+		    runtime "Release"
+		    optimize "on"
+
+		    links
+		    {
+			    "%{Library.ShaderC_Release}",
+			    "%{Library.SPIRV_Cross_Release}",
+			    "%{Library.SPIRV_Cross_GLSL_Release}",
+                "%{Library.Assimp_Release}"
+		    }
+
+	    filter "configurations:Dist"
+		    defines "SV_DIST"
+		    runtime "Release"
+		    optimize "on"
+
+		    links
+		    {
+			    "%{Library.ShaderC_Release}",
+			    "%{Library.SPIRV_Cross_Release}",
+			    "%{Library.SPIRV_Cross_GLSL_Release}",
+                "%{Library.Assimp_Release}"
+		    }

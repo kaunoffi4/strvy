@@ -4,7 +4,7 @@ project "Strvy-Editor"
     language "C++"
     location "."
     cppdialect "C++17"
-    staticruntime "on"
+    staticruntime "off"
 
     targetdir("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
     objdir("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -23,7 +23,6 @@ project "Strvy-Editor"
         "%{wks.location}/strvy/vendor",
         "%{IncludeDir.entt}",
         "%{IncludeDir.ImGuizmo}"
-
     }
 
     links
@@ -39,10 +38,10 @@ project "Strvy-Editor"
         filter "system:windows"
             systemversion "latest"
 
-        defines 
-        {
-            "SV_PLATFORM_WINDOWS"
-        }
+            defines 
+            {
+                "SV_PLATFORM_WINDOWS"
+            }
 
 
         filter "configurations:Debug"

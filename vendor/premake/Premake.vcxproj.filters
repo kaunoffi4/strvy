@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="..">
+      <UniqueIdentifier>{61705900-4DFC-870B-B6AA-880BA255880B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\Game">
+      <UniqueIdentifier>{AAEE7E47-16CE-FDE2-1FE6-88B98B446444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\Strvy-Editor">
+      <UniqueIdentifier>{CC854DCE-3811-BB92-4122-3E87AD2C1793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy">
+      <UniqueIdentifier>{387D833A-244A-DE45-4D63-CCED398F13D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy\vendor">
+      <UniqueIdentifier>{95040FF9-0190-7CBD-0AA1-FFB176ABD8BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy\vendor\GLFW">
+      <UniqueIdentifier>{F4E41CAE-E073-A677-8992-BA727500B71D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy\vendor\Glad">
+      <UniqueIdentifier>{9C701DAE-88FF-A677-311E-BB721D8CB71D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy\vendor\assimp">
+      <UniqueIdentifier>{11D66AE8-FDCF-933A-E63C-2A4BD2D5F9A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy\vendor\assimp\assimp-5.4.3">
+      <UniqueIdentifier>{920D86B5-FEC6-F05F-8726-0B3AF3DEA6CF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy\vendor\imgui">
+      <UniqueIdentifier>{BF6D3374-2BDA-EE6E-F4CD-86CC60F910D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..\strvy\vendor\yaml-cpp">
+      <UniqueIdentifier>{E762205D-D387-6FDD-FCD2-546DE8566EFB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Game\premake5.lua">
+      <Filter>..\Game</Filter>
+    </None>
+    <None Include="..\..\Strvy-Editor\premake5.lua">
+      <Filter>..\Strvy-Editor</Filter>
+    </None>
+    <None Include="..\..\premake5.lua">
+      <Filter>..</Filter>
+    </None>
+    <None Include="..\..\strvy\premake5.lua">
+      <Filter>..\strvy</Filter>
+    </None>
+    <None Include="..\..\strvy\vendor\GLFW\premake5.lua">
+      <Filter>..\strvy\vendor\GLFW</Filter>
+    </None>
+    <None Include="..\..\strvy\vendor\Glad\premake5.lua">
+      <Filter>..\strvy\vendor\Glad</Filter>
+    </None>
+    <None Include="..\..\strvy\vendor\assimp\assimp-5.4.3\premake5.lua">
+      <Filter>..\strvy\vendor\assimp\assimp-5.4.3</Filter>
+    </None>
+    <None Include="..\..\strvy\vendor\imgui\premake5.lua">
+      <Filter>..\strvy\vendor\imgui</Filter>
+    </None>
+    <None Include="..\..\strvy\vendor\yaml-cpp\premake5.lua">
+      <Filter>..\strvy\vendor\yaml-cpp</Filter>
+    </None>
+    <None Include="premake5.lua" />
+  </ItemGroup>
+</Project>

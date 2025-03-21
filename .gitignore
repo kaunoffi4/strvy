@@ -2,6 +2,9 @@
 .vs/
 bin/
 bin-int/
+strvy/vendor/VulkanSDK
+Strvy-Editor/assets/cache
+scripts/__pycache__
 
 # Files 
 *.user

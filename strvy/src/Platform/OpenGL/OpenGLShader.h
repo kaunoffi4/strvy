@@ -45,9 +45,20 @@ namespace strvy {
 		std::string readFile(const std::string& filepath);
 		std::unordered_map<GLenum, std::string> preProcess(const std::string& source);
 		void compile(const std::unordered_map<GLenum, std::string>& shaderSources);
+
+		void compileOrGetVulkanBinaries(const std::unordered_map<GLenum, std::string>& shaderSources);
+		void compileOrGetOpenGLBinaries();
+		void createProgram();
+		void reflect(GLenum stage, const std::vector<uint32_t>& shaderData);
 	private:
 		uint32_t m_rendererID;
 		std::string m_name;
-		GLint m_VPLocation;
+		std::string m_filePath;
+
+		std::unordered_map<GLenum, std::vector<uint32_t>> m_VulkanSPIRV;
+		std::unordered_map<GLenum, std::vector<uint32_t>> m_OpenGLSPIRV;
+
+		std::unordered_map<GLenum, std::string> m_OpenGLSourceCode;
+
 	};
 }

@@ -28,6 +28,9 @@
     <Filter Include="src\strvy\ImGui">
       <UniqueIdentifier>{2EC9C45B-9A54-3220-A365-B5140F708E20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\strvy\Math">
+      <UniqueIdentifier>{5D483ED4-4916-32DA-32AA-A2001E170E3F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\strvy\Renderer">
       <UniqueIdentifier>{2A49D9A3-162D-9AF9-7F8D-944C6B90847B}</UniqueIdentifier>
     </Filter>
@@ -84,6 +87,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -120,6 +126,9 @@
     <ClInclude Include="src\strvy\Core\MouseButtonCodes.h">
       <Filter>src\strvy\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Core\Timer.h">
+      <Filter>src\strvy\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Core\Timestep.h">
       <Filter>src\strvy\Core</Filter>
     </ClInclude>
@@ -144,10 +153,16 @@
     <ClInclude Include="src\strvy\ImGui\ImGuiLayer.h">
       <Filter>src\strvy\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Math\Math.h">
+      <Filter>src\strvy\Math</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Buffer.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Camera.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\EditorCamera.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Framebuffer.h">
@@ -181,6 +196,9 @@
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Texture.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\UniformBuffer.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\VertexArray.h">
@@ -1464,8 +1482,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Math\Math.h" />
-    <ClInclude Include="src\strvy\Renderer\EditorCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1484,6 +1500,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -1516,7 +1535,13 @@
     <ClCompile Include="src\strvy\ImGui\ImGuiLayer.cpp">
       <Filter>src\strvy\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\strvy\Math\Math.cpp">
+      <Filter>src\strvy\Math</Filter>
+    </ClCompile>
     <ClCompile Include="src\strvy\Renderer\Buffer.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\EditorCamera.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Renderer\Framebuffer.cpp">
@@ -1549,6 +1574,9 @@
     <ClCompile Include="src\strvy\Renderer\Texture.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\UniformBuffer.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\strvy\Renderer\VertexArray.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
@@ -1573,7 +1601,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\strvy\Math\Math.cpp" />
-    <ClCompile Include="src\strvy\Renderer\EditorCamera.cpp" />
   </ItemGroup>
 </Project>

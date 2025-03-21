@@ -4,9 +4,11 @@
 
 #include "VertexArray.h"
 #include "Shader.h"
+#include "UniformBuffer.h"
 #include "RenderCommand.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
  
 
 
@@ -46,6 +48,13 @@ namespace strvy {
 		glm::vec4 quadVertexPositions[4];
 
 		Renderer2D::Statistics stats;
+
+		struct CameraData
+		{
+			glm::mat4 viewProjection;
+		};
+		CameraData cameraBuffer;
+		Ref<UniformBuffer> cameraUniformBuffer;
 	};
 
 	static Renderer2DData s_data;
@@ -97,13 +106,7 @@ namespace strvy {
 		uint32_t whiteTextureData = 0xffffffff;
 		s_data.whiteTexture->setData(&whiteTextureData, sizeof(uint32_t));
 
-		int32_t samplers[s_data.maxTextureSlots];
-		for (uint32_t i = 0; i < s_data.maxTextureSlots; ++i)
-			samplers[i] = i;
-
 		s_data.textureShader = Shader::create("assets/shaders/Texture.glsl");
-		s_data.textureShader->bind();
-		s_data.textureShader->setIntArray("u_Textures", samplers, s_data.maxTextureSlots);
 
 		s_data.textureSlots[0] = s_data.whiteTexture;
 
@@ -111,6 +114,8 @@ namespace strvy {
 		s_data.quadVertexPositions[1] = {  0.5f, -0.5, 0.0f, 1.0f };
 		s_data.quadVertexPositions[2] = {  0.5f,  0.5, 0.0f, 1.0f };
 		s_data.quadVertexPositions[3] = { -0.5f,  0.5, 0.0f, 1.0f };
+
+		s_data.cameraUniformBuffer = UniformBuffer::create(sizeof(Renderer2DData::CameraData), 0);
 	}
 
 	void Renderer2D::shutdown()
@@ -119,14 +124,14 @@ namespace strvy {
 		delete[] s_data.quadVertexBufferBase;
 	}
 
-	void Renderer2D::beginScene(const Camera& camera, const glm::mat4& transform)
+	void Renderer2D::beginScene(const Camera& camera, const glm::mat4& transform) // In a case of success, change for all of the overrides
 	{
 		SV_PROFILE_FUNCTION();
 
 		glm::mat4 viewProj = camera.getProjection() * glm::inverse(transform);
 
-		s_data.textureShader->bind();
-		s_data.textureShader->setMat4("u_ViewProjection", viewProj);
+		s_data.cameraBuffer.viewProjection = viewProj;
+		s_data.cameraUniformBuffer->setData(glm::value_ptr(viewProj), sizeof(glm::mat4));
 
 		s_data.quadIndexCount = 0;
 		s_data.quadVertexBufferPtr = s_data.quadVertexBufferBase;
@@ -140,8 +145,8 @@ namespace strvy {
 
 		glm::mat4 viewProj = camera.getViewProjection();
 
-		s_data.textureShader->bind();
-		s_data.textureShader->setMat4("u_ViewProjection", viewProj);
+		s_data.cameraBuffer.viewProjection = viewProj;
+		s_data.cameraUniformBuffer->setData(glm::value_ptr(viewProj), sizeof(glm::mat4));
 
 		s_data.quadIndexCount = 0;
 		s_data.quadVertexBufferPtr = s_data.quadVertexBufferBase;
@@ -153,8 +158,8 @@ namespace strvy {
 	{
 		SV_PROFILE_FUNCTION();
 
-		s_data.textureShader->bind();
-		s_data.textureShader->setMat4("u_ViewProjection", camera.getVPMatrix());
+		//s_data.textureShader->bind();
+		//s_data.textureShader->setMat4("u_ViewProjection", camera.getVPMatrix());
 
 		s_data.quadIndexCount = 0;
 		s_data.quadVertexBufferPtr = s_data.quadVertexBufferBase;
@@ -179,6 +184,7 @@ namespace strvy {
 			s_data.textureSlots[i]->bind(i);
 		}
 
+		s_data.textureShader->bind();
 		RenderCommand::drawIndexed(s_data.quadVertexArray, s_data.quadIndexCount);
 		s_data.stats.drawCalls++;
 	}
