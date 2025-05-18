@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="src">
@@ -171,6 +171,12 @@
     <ClInclude Include="src\strvy\Renderer\GraphicsContext.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Mesh.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Model.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\strvy\Renderer\OrthographicCamera.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
@@ -184,6 +190,9 @@
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Renderer2D.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\Renderer3D.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\RendererAPI.h">
@@ -208,6 +217,9 @@
       <Filter>src\strvy\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Scene\Entity.h">
+      <Filter>src\strvy\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Scene\PrimitiveGeometry.h">
       <Filter>src\strvy\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Scene\Scene.h">
@@ -1482,6 +1494,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\UBOSpecifications.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1562,6 +1575,9 @@
     <ClCompile Include="src\strvy\Renderer\Renderer2D.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Renderer3D.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\strvy\Renderer\RendererAPI.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
@@ -1581,6 +1597,9 @@
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Scene\Entity.cpp">
+      <Filter>src\strvy\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Scene\PrimitiveGeometry.cpp">
       <Filter>src\strvy\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Scene\Scene.cpp">

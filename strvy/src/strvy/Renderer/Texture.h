@@ -22,6 +22,13 @@ namespace strvy {
 		virtual bool operator==(const Texture& other) const = 0;
 	};
 
+	enum class TextureType
+	{
+		none = 0,
+		diffuse,
+		specular
+	};
+
 	class Texture2D : public Texture
 	{
 	public:

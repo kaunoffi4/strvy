@@ -15,6 +15,7 @@ namespace strvy {
 
 
 		virtual void drawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount) override;
+		virtual void getMaxUBOSize(int& maxUBOSize) override;
 
 	};
 }

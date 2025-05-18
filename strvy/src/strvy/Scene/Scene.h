@@ -2,6 +2,7 @@
 
 #include "strvy/Core/Timestep.h"
 #include "strvy/Renderer/EditorCamera.h"
+#include "strvy/Renderer/UBOSpecifications.h"
 
 #include "entt.hpp"
 
@@ -20,6 +21,7 @@ namespace strvy {
 
 		void onUpdateRuntime(Timestep ts);
 		void onUpdateEditor(Timestep ts, EditorCamera& camera);
+		void onUpdateEditor3D(Timestep ts, EditorCamera& camera, const LightBlock& lightBlock);
 		void onViewportResize(uint32_t width, uint32_t height);
 
 		Entity getPrimaryCameraEntity();

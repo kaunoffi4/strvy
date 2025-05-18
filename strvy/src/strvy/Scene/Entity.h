@@ -16,8 +16,8 @@ namespace strvy {
 		T& addComponent(Args&&... args)
 		{
 			SV_CORE_ASSERT(!hasComponent<T>(), "Entity already has component!");
-			T& component = m_scene->m_registry.emplace<T>(m_entityHandle, std::forward<Args>(args)...);
-			m_scene->onComponentAdded(*this, component);
+			T& component = m_scene->m_registry.emplace<T>(m_entityHandle, std::forward<Args>(args)...); // here PrimitiveComponent is created and its PrimitiveGeometry's
+			m_scene->onComponentAdded(*this, component);												// attribute constructor gets called
 
 			return component;
 		}

@@ -23,6 +23,7 @@ namespace strvy {
 
 		inline void setViewportSize(float width, float height) { m_viewportWidth = width; m_viewportHeight = height; updateProjection(); }
 
+		const glm::vec3& getModel() const { return m_position; }
 		const glm::mat4& getViewMatrix() const { return m_viewMatrix; }
 		glm::mat4 getViewProjection() const { return m_projection * m_viewMatrix; }
 

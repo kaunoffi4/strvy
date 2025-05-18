@@ -83,7 +83,6 @@
     <None Include="..\..\strvy\premake5.lua" />
     <None Include="..\..\strvy\vendor\GLFW\premake5.lua" />
     <None Include="..\..\strvy\vendor\Glad\premake5.lua" />
-    <None Include="..\..\strvy\vendor\assimp\assimp-5.4.3\premake5.lua" />
     <None Include="..\..\strvy\vendor\imgui\premake5.lua" />
     <None Include="..\..\strvy\vendor\yaml-cpp\premake5.lua" />
     <None Include="premake5.lua" />

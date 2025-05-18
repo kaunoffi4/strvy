@@ -10,8 +10,8 @@ namespace strvy {
 	{
 		SV_PROFILE_FUNCTION();
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glEnable(GL_BLEND);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
 		glEnable(GL_DEPTH_TEST);
 	}
@@ -33,8 +33,14 @@ namespace strvy {
 
 	void OpenGLRendererAPI::drawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount)
 	{
-		uint32_t count = indexCount ? vertexArray->getIndexBuffer()->getCount() : indexCount;
+		uint32_t count = !indexCount ? vertexArray->getIndexBuffer()->getCount() : indexCount;
 		glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
 		glBindTexture(GL_TEXTURE_2D, 0); // unbind previous texture
+	}
+
+	void OpenGLRendererAPI::getMaxUBOSize(int& maxUBOSize)
+	{
+		(GLint)maxUBOSize;
+		glGetIntegerv(GL_MAX_UNIFORM_BLOCK_SIZE, &maxUBOSize);
 	}
 }

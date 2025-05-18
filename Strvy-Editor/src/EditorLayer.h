@@ -2,6 +2,7 @@
 
 #include "strvy.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "strvy/Renderer/UBOSpecifications.h"
 
 #include "strvy/Renderer/EditorCamera.h"
 
@@ -41,6 +42,8 @@ namespace strvy {
 		Entity m_hoveredEntity;
 
 		EditorCamera m_editorCamera;
+		LightBlock m_lightBlock;
+
 
 		bool m_viewportFocused = false, m_viewportHovered = false;
 		glm::vec2 m_viewportSize = { 0.0f, 0.0f };

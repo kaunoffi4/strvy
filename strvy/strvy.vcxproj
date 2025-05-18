@@ -84,7 +84,6 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -109,7 +108,6 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,7 +133,6 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -181,19 +178,24 @@
     <ClInclude Include="src\strvy\Renderer\EditorCamera.h" />
     <ClInclude Include="src\strvy\Renderer\Framebuffer.h" />
     <ClInclude Include="src\strvy\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\strvy\Renderer\Mesh.h" />
+    <ClInclude Include="src\strvy\Renderer\Model.h" />
     <ClInclude Include="src\strvy\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\strvy\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\strvy\Renderer\RenderCommand.h" />
     <ClInclude Include="src\strvy\Renderer\Renderer.h" />
     <ClInclude Include="src\strvy\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\strvy\Renderer\Renderer3D.h" />
     <ClInclude Include="src\strvy\Renderer\RendererAPI.h" />
     <ClInclude Include="src\strvy\Renderer\Shader.h" />
     <ClInclude Include="src\strvy\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\strvy\Renderer\Texture.h" />
+    <ClInclude Include="src\strvy\Renderer\UBOSpecifications.h" />
     <ClInclude Include="src\strvy\Renderer\UniformBuffer.h" />
     <ClInclude Include="src\strvy\Renderer\VertexArray.h" />
     <ClInclude Include="src\strvy\Scene\Components.h" />
     <ClInclude Include="src\strvy\Scene\Entity.h" />
+    <ClInclude Include="src\strvy\Scene\PrimitiveGeometry.h" />
     <ClInclude Include="src\strvy\Scene\Scene.h" />
     <ClInclude Include="src\strvy\Scene\SceneCamera.h" />
     <ClInclude Include="src\strvy\Scene\SceneSerializer.h" />
@@ -646,6 +648,7 @@
     <ClCompile Include="src\strvy\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\strvy\Renderer\Renderer.cpp" />
     <ClCompile Include="src\strvy\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\strvy\Renderer\Renderer3D.cpp" />
     <ClCompile Include="src\strvy\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\strvy\Renderer\Shader.cpp" />
     <ClCompile Include="src\strvy\Renderer\SubTexture2D.cpp" />
@@ -653,6 +656,7 @@
     <ClCompile Include="src\strvy\Renderer\UniformBuffer.cpp" />
     <ClCompile Include="src\strvy\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\strvy\Scene\Entity.cpp" />
+    <ClCompile Include="src\strvy\Scene\PrimitiveGeometry.cpp" />
     <ClCompile Include="src\strvy\Scene\Scene.cpp" />
     <ClCompile Include="src\strvy\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\strvy\Scene\SceneSerializer.cpp" />

@@ -5,8 +5,8 @@
 
 namespace strvy {
 
-	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
-		: m_width(width), m_height(height)
+	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height, TextureType type)
+		: m_width(width), m_height(height), m_type(enumTextureTypeToString(type))
 	{
 		SV_PROFILE_FUNCTION();
 
@@ -22,8 +22,8 @@ namespace strvy {
 		glTextureParameteri(m_rendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	}
 
-	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
-		: m_path(path)
+	OpenGLTexture2D::OpenGLTexture2D(const std::string& path, TextureType type)
+		: m_path(path), m_type(enumTextureTypeToString(type))
 	{
 		SV_PROFILE_FUNCTION();
 
@@ -91,5 +91,15 @@ namespace strvy {
 		SV_PROFILE_FUNCTION();
 
 		glBindTextureUnit(slot, m_rendererID);
+	}
+
+	std::string OpenGLTexture2D::enumTextureTypeToString(TextureType type)
+	{
+		switch (type)
+		{
+			case TextureType::none:		return "texture_none";
+			case TextureType::diffuse:	return "texture_diffuse";
+			case TextureType::specular:	return "texture_specular";
+		}
 	}
 }

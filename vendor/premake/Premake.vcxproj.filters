@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="..">
@@ -21,12 +21,6 @@
     </Filter>
     <Filter Include="..\strvy\vendor\Glad">
       <UniqueIdentifier>{9C701DAE-88FF-A677-311E-BB721D8CB71D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="..\strvy\vendor\assimp">
-      <UniqueIdentifier>{11D66AE8-FDCF-933A-E63C-2A4BD2D5F9A6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="..\strvy\vendor\assimp\assimp-5.4.3">
-      <UniqueIdentifier>{920D86B5-FEC6-F05F-8726-0B3AF3DEA6CF}</UniqueIdentifier>
     </Filter>
     <Filter Include="..\strvy\vendor\imgui">
       <UniqueIdentifier>{BF6D3374-2BDA-EE6E-F4CD-86CC60F910D7}</UniqueIdentifier>
@@ -53,9 +47,6 @@
     </None>
     <None Include="..\..\strvy\vendor\Glad\premake5.lua">
       <Filter>..\strvy\vendor\Glad</Filter>
-    </None>
-    <None Include="..\..\strvy\vendor\assimp\assimp-5.4.3\premake5.lua">
-      <Filter>..\strvy\vendor\assimp\assimp-5.4.3</Filter>
     </None>
     <None Include="..\..\strvy\vendor\imgui\premake5.lua">
       <Filter>..\strvy\vendor\imgui</Filter>

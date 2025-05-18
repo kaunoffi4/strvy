@@ -3,6 +3,7 @@
 
 #include "Components.h"
 #include "strvy/Renderer/Renderer2D.h"
+#include "strvy/Renderer/Renderer3D.h"
 
 #include <glm/glm.hpp>
 
@@ -105,6 +106,37 @@ namespace strvy {
         Renderer2D::endScene();
     }
 
+    void Scene::onUpdateEditor3D(Timestep ts, EditorCamera& camera, const LightBlock& lightBlock)
+    {
+        Renderer3D::beginScene(camera, lightBlock);
+
+        // draw 3D objects (models)
+
+        // test code snippet
+        glm::mat4 modelCube1 = glm::mat4(1.0f);
+        //Renderer3D::drawCall(modelCube1, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1); // change this part (drawCall function) to pass an entity ID as the third argument
+
+        glm::mat4 modelLamp = glm::translate(glm::mat4(1.0f), lightBlock.lights[0].position);
+        modelLamp = glm::inverse(modelLamp);
+        modelLamp = glm::scale(modelLamp, glm::vec3(0.2f));
+        //Renderer3D::drawCall(modelLamp, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), 2);
+
+
+
+        // draw 3D primitive geometries (cubes, spheres, etc.)
+        
+        auto group = m_registry.group<TransformComponent>(entt::get<PrimitiveComponent>);
+
+        for (auto entity : group)
+        {
+            auto [transform, primitive] = group.get<TransformComponent, PrimitiveComponent>(entity);
+
+            Renderer3D::drawPrimitive(transform.getTransform(), primitive, (int)entity);
+        }
+
+        Renderer3D::endScene();
+    }
+
     void Scene::onViewportResize(uint32_t width, uint32_t height)
     {
         m_viewportWidth = width;
@@ -138,9 +170,15 @@ namespace strvy {
     }
 
     template<typename T>
-    void Scene::onComponentAdded(Entity entity, T& component)
+    void Scene::onComponentAdded(Entity entity, T& component) // this definition is for template types, whose implementation doesn't exist yet
     {
-        static_assert(false);
+        static_assert(false); 
+    }
+
+    template<>
+    void Scene::onComponentAdded<PrimitiveComponent>(Entity entity, PrimitiveComponent& component)
+    {
+        // create a primitive geometry
     }
 
     template<>

@@ -32,6 +32,11 @@ namespace strvy {
 			s_rendererAPI->drawIndexed(vertexArray, count);
 		}
 
+		inline static void getMaxUBOSize(int& maxUBOSize)
+		{
+			s_rendererAPI->getMaxUBOSize(maxUBOSize);
+		}
+
 	private:
 		static RendererAPI* s_rendererAPI;
 	};

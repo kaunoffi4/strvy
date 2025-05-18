@@ -3,6 +3,7 @@
 
 #include "Platform/OpenGL/OpenGLShader.h"
 #include "Renderer2D.h"
+#include "Renderer3D.h"
 
 
 
@@ -16,12 +17,15 @@ namespace strvy {
 		SV_PROFILE_FUNCTION();
 
 		RenderCommand::init();
-		Renderer2D::init();
+		//Renderer2D::init();
+		Renderer3D::init();
+
 	}
 
 	void Renderer::shutdown()
 	{
-		Renderer2D::shutdown();
+		//Renderer2D::shutdown();
+		Renderer3D::shutdown();
 	}
 
 	void Renderer::onWindowResize(uint32_t width, uint32_t height)

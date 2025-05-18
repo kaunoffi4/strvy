@@ -252,11 +252,19 @@ namespace strvy {
 				ImGui::CloseCurrentPopup();
 			}
 
-			if (ImGui::MenuItem("Sprite Renderer"))
+			if (ImGui::MenuItem("Primitive")) // extend it with a selection menu of different geometries to create
+			{
+				Ref<PrimitiveCube> cube = std::make_shared<PrimitiveCube>();
+				
+				m_selectionContext.addComponent<PrimitiveComponent>(cube, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+				ImGui::CloseCurrentPopup();
+			}
+
+			/*if (ImGui::MenuItem("Sprite Renderer")) For 2D
 			{
 				m_selectionContext.addComponent<SpriteRendererComponent>();
 				ImGui::CloseCurrentPopup();
-			}
+			}*/
 
 
 			ImGui::EndPopup();
@@ -271,6 +279,7 @@ namespace strvy {
 				component.rotation = glm::radians(rotation);
 				drawVec3Control("Scale", component.scale, 1.0f);
 			});
+
 
 		drawComponent<CameraComponent>("Camera", entity, [](auto& component)
 		{
@@ -333,6 +342,11 @@ namespace strvy {
 				ImGui::Checkbox("Fixed aspect ratio", &component.fixedAspectRatio);
 			}
 		});
+
+		drawComponent<PrimitiveComponent>("Primitive", entity, [](auto& component)
+			{
+				ImGui::ColorEdit4("Color", glm::value_ptr(component.color));
+			});
 
 		drawComponent<SpriteRendererComponent>("Sprite Renderer", entity, [](auto& component)
 		{

@@ -58,7 +58,6 @@ layout(binding = 0) uniform sampler2D u_Textures[32];
 
 void main()				
 {
-	// TODO: v_tilingFactor
 	vec4 texColor = Input.Color;
 	switch(int(Input.TexIndex))
 	{

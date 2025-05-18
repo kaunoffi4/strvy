@@ -38,6 +38,15 @@ namespace strvy {
 		m_activeScene = createRef<Scene>();
 
 		m_editorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
+
+		// lighting initialization (currently it's only one light source)
+		m_lightBlock.lights[0].position = glm::vec3(1.2f, 1.0f, 2.0f);
+
+		m_lightBlock.lights[0].ambient = glm::vec3(0.2f, 0.2f, 0.2f);
+		m_lightBlock.lights[0].diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
+		m_lightBlock.lights[0].specular = glm::vec3(1.0f, 1.0f, 1.0f);
+
+		m_lightBlock.lightCount = 1;
 #if 0
 		// Entity
 		auto square = m_activeScene->createEntity("Green Square");
@@ -131,13 +140,14 @@ namespace strvy {
 		RenderCommand::setClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::clear();
 
-		// Clear a color buffer containing our entity IDs with -1
+		// Clear a color buffer containing entity IDs with -1
 		m_framebuffer->clearAttachment(1, -1);
 
 		
 		// Update scene
-		m_activeScene->onUpdateEditor(ts, m_editorCamera);
+		m_activeScene->onUpdateEditor3D(ts, m_editorCamera, m_lightBlock);
 
+		// MOUSE PICKING implementation
 		auto[mx, my] = ImGui::GetMousePos();
 		mx -= m_viewportBounds[0].x;
 		my -= m_viewportBounds[0].y;
@@ -237,8 +247,8 @@ namespace strvy {
 		ImGui::Begin("render stats");
 
 		std::string name = "none";
-		if (m_hoveredEntity)
-			name = m_hoveredEntity.getComponent<TagComponent>().tag;
+		//if (m_hoveredEntity)
+			//name = m_hoveredEntity.getComponent<TagComponent>().tag;
 		ImGui::Text("Hovered Entity: %s", name.c_str());
 
 
