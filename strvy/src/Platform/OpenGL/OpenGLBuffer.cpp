@@ -13,6 +13,10 @@ namespace strvy {
 	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
 	{
 		SV_PROFILE_FUNCTION();
+		m_capacity = 1;
+		while (size >= m_capacity)
+			m_capacity *= 2;
+
 
 		glCreateBuffers(1, &m_rendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_rendererID);
@@ -23,10 +27,13 @@ namespace strvy {
 	{
 		SV_PROFILE_FUNCTION();
 
+		m_capacity = 1;
+		while (size >= m_capacity)
+			m_capacity *= 2;
+
 		glCreateBuffers(1, &m_rendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_rendererID);
 		glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
-
 	}
 
 	OpenGLVertexBuffer::~OpenGLVertexBuffer()
@@ -50,8 +57,20 @@ namespace strvy {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
+	void OpenGLVertexBuffer::invalidate()
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, m_rendererID);
+		glBufferData(GL_ARRAY_BUFFER, m_capacity, nullptr, GL_DYNAMIC_DRAW);
+	}
+
 	void OpenGLVertexBuffer::setData(const void* data, uint32_t size)
 	{
+		if (size >= m_capacity)
+		{
+			m_capacity *= 2;
+			invalidate();
+		}
+
 		glBindBuffer(GL_ARRAY_BUFFER, m_rendererID);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 	}

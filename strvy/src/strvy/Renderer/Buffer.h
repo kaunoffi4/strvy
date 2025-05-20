@@ -37,11 +37,12 @@ namespace strvy {
 		uint32_t size;
 		uint32_t offset;
 		bool normalized;
+		uint32_t divisor; // divisor - content update rate of a specific vertex attribute (0 - once per vertex, 1 - once per instance, 2 - per 2 instances and so on)
 
 		BufferElement() {}
 
-		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
-			: name(name), type(type), size(ShaderDataTypeSize(type)), offset(0), normalized(normalized)
+		BufferElement(ShaderDataType type, const std::string& name, bool normalized = false, uint32_t divisor = 0)	
+			: name(name), type(type), size(ShaderDataTypeSize(type)), offset(0), normalized(normalized), divisor(divisor)
 		{
 		}
 
@@ -114,6 +115,7 @@ namespace strvy {
 		virtual void unbind() const = 0;
 
 		virtual void setData(const void* data, uint32_t size) = 0;
+		virtual void invalidate() = 0;
 
 		virtual const BufferLayout& getLayout() const = 0;
 		virtual void setLayout(const BufferLayout& layout) = 0;

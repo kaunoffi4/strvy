@@ -38,6 +38,15 @@ namespace strvy {
 		glBindTexture(GL_TEXTURE_2D, 0); // unbind previous texture
 	}
 
+	void OpenGLRendererAPI::drawInstanced(const Ref<VertexArray>& vertexArray, uint32_t instanceCount)
+	{
+		vertexArray->getIndexBuffer()->bind();
+		uint32_t count = vertexArray->getIndexBuffer()->getCount();
+		glDrawElementsInstanced(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr, instanceCount);
+		glBindTexture(GL_TEXTURE_2D, 0); // unbind previous texture ??
+		vertexArray->getIndexBuffer()->unbind();
+	}
+
 	void OpenGLRendererAPI::getMaxUBOSize(int& maxUBOSize)
 	{
 		(GLint)maxUBOSize;

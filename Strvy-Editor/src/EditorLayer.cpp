@@ -252,13 +252,13 @@ namespace strvy {
 		ImGui::Text("Hovered Entity: %s", name.c_str());
 
 
-		auto stats = Renderer2D::getStats();
-		ImGui::Text("Renderer2D stats:");
+		auto stats = Renderer3D::getStats();
+		ImGui::Text("Renderer3D stats:");
 		ImGui::Text("FPS: %.1f", (1000.0f / ts.getMilliseconds()));
 		ImGui::Text("Draw calls: %d", stats.drawCalls);
-		ImGui::Text("Quads: %d", stats.quadCount);
-		ImGui::Text("Vertices: %d", stats.getTotalVertexCount());
-		ImGui::Text("Indices: %d", stats.getTotalIndexCount());
+		//ImGui::Text("Quads: %d", stats.quadCount);
+		//ImGui::Text("Vertices: %d", stats.getTotalVertexCount());
+		//ImGui::Text("Indices: %d", stats.getTotalIndexCount());
 
 		ImGui::End();
 
@@ -332,8 +332,6 @@ namespace strvy {
 				tc.rotation += deltaRotation;
 				tc.scale = scale;
 			}
-
-
 		}
 
 

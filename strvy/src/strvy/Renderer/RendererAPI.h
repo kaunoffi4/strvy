@@ -21,6 +21,8 @@ namespace strvy {
 		
 
 		virtual void drawIndexed(const std::shared_ptr<VertexArray>& vertexArray, uint32_t indexCount = 0) = 0;
+		virtual void drawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t instanceCount) = 0;
+
 		virtual void getMaxUBOSize(int& maxUBOSize) = 0;
 
 		inline static API getAPI() { return s_API; }

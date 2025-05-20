@@ -24,6 +24,7 @@
 // ----Renderer--------------------
 #include "strvy/Renderer/Renderer.h"
 #include "strvy/Renderer/Renderer2D.h"
+#include "strvy/Renderer/Renderer3D.h"
 #include "strvy/Renderer/RenderCommand.h"
 
 #include "strvy/Renderer/Buffer.h"

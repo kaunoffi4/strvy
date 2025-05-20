@@ -19,10 +19,20 @@ namespace strvy {
 
 		static void drawCall(const glm::mat4& transform, const glm::vec4& color, int entityID);
 
-		static void drawPrimitive(const glm::mat4& transform, const PrimitiveComponent& pc, int entityID);
+		static void drawPrimitive(const void* instanceData, uint32_t size, uint32_t instanceCount);
 
 
 		static void endScene();
+
+		struct Statistics
+		{
+			uint32_t drawCalls = 0;
+			//uint32_t quadCount = 0;
+
+			//uint32_t getTotalVertexCount() { return quadCount * 4; }
+			//uint32_t getTotalIndexCount() { return quadCount * 6; }
+		};
+		static Statistics getStats();
 	};
 
 }

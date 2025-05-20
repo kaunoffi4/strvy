@@ -123,16 +123,37 @@ namespace strvy {
 
 
 
+
         // draw 3D primitive geometries (cubes, spheres, etc.)
-        
         auto group = m_registry.group<TransformComponent>(entt::get<PrimitiveComponent>);
+        
+        struct InstanceData
+        {
+            glm::mat4 modelMatrix;
+            glm::vec4 color;
+            int entityID;
+        };
+
+        uint32_t count = group.size();
+        std::vector<InstanceData> instanceData(count);
+
+        uint32_t i = 0;
 
         for (auto entity : group)
         {
             auto [transform, primitive] = group.get<TransformComponent, PrimitiveComponent>(entity);
 
-            Renderer3D::drawPrimitive(transform.getTransform(), primitive, (int)entity);
+            if (i < count) // TODO: add check for different geometries (cube, sphere, etc.)
+            {
+                instanceData[i].modelMatrix = transform.getTransform();
+                instanceData[i].color = primitive.color;
+                instanceData[i].entityID = (int)entity;
+                ++i;
+            }
+
         }
+
+        Renderer3D::drawPrimitive(count ? instanceData.data() : nullptr, sizeof(InstanceData)* count, count);
 
         Renderer3D::endScene();
     }

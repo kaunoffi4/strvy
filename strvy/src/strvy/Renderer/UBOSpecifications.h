@@ -5,6 +5,13 @@
 
 namespace strvy {
 
+    struct alignas(16) CameraData
+    {
+        glm::mat4 viewProjection;
+        glm::vec3 viewPos;
+        int _pad0;
+    };
+
     struct alignas(16) GLSLLight
     {
         glm::vec3 position;
@@ -44,6 +51,20 @@ namespace strvy {
         glm::vec3 specular;
         float _pad2;
     };
+
+    struct alignas(16) MaterialBlock
+    {
+        Material materials[5];
+    };
 	
+    struct alignas(16) InstanceBlock 
+    {
+        glm::mat4 transform;
+
+        int entityID;
+        glm::vec3 _pad0;
+
+        glm::vec4 color;
+    };
 
 }

@@ -32,6 +32,11 @@ namespace strvy {
 			s_rendererAPI->drawIndexed(vertexArray, count);
 		}
 
+		inline static void drawInstanced(const std::shared_ptr<VertexArray>& vertexArray, uint32_t instanceCount)
+		{
+			s_rendererAPI->drawInstanced(vertexArray, instanceCount);
+		}
+
 		inline static void getMaxUBOSize(int& maxUBOSize)
 		{
 			s_rendererAPI->getMaxUBOSize(maxUBOSize);

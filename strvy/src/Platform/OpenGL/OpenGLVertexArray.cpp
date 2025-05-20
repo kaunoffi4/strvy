@@ -81,6 +81,7 @@ namespace strvy {
 						element.normalized ? GL_TRUE : GL_FALSE,
 						layout.getStride(),
 						(const void*)element.offset);
+					glVertexAttribDivisor(m_vertexBufferIndex, element.divisor);
 					m_vertexBufferIndex++;
 					break;
 				}
@@ -96,6 +97,7 @@ namespace strvy {
 						ShaderDataTypeToOpenGLBaseType(element.type),
 						layout.getStride(),
 						(const void*)element.offset);
+					glVertexAttribDivisor(m_vertexBufferIndex, element.divisor);
 					m_vertexBufferIndex++;
 					break;
 				}
@@ -112,6 +114,7 @@ namespace strvy {
 							element.normalized ? GL_TRUE : GL_FALSE,
 							layout.getStride(),
 							(const void*)(element.offset + sizeof(float) * count * i));
+						glVertexAttribDivisor(m_vertexBufferIndex, element.divisor);
 						m_vertexBufferIndex++;
 					}
 					break;
@@ -122,6 +125,7 @@ namespace strvy {
 			}
 		}
 		m_vertexBuffers.push_back(vertexBuffer);
+		vertexBuffer->unbind();
 	}
 
 	void OpenGLVertexArray::setIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
