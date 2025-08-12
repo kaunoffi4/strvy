@@ -14,13 +14,16 @@ namespace strvy {
 		virtual uint32_t getWidth() const = 0;
 		virtual uint32_t getHeight() const = 0;
 		virtual uint32_t getRendererID() const = 0;
+		virtual const std::string& getPath() const = 0;
 
 		virtual void setData(void* data, uint32_t size) = 0;
 
+		virtual std::string getTextureTypeAsString() const = 0;
 		virtual void bind(uint32_t slot = 0) const = 0;
 
 		virtual bool operator==(const Texture& other) const = 0;
 	};
+
 
 	enum class TextureType
 	{
@@ -33,6 +36,8 @@ namespace strvy {
 	{
 	public:
 		static Ref<Texture2D> create(uint32_t width, uint32_t height);
-		static Ref<Texture2D> create(const std::string& path);
+		static Ref<Texture2D> create(const std::string& path, TextureType type = TextureType::none);
+		static Ref<Texture2D> create(const std::string& path, const std::string& type = "texture_none");
+
 	};
 }

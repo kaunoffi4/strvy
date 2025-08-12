@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EditorCamera.h"
+#include "Model.h"
 
 #include "strvy/Scene/Components.h"
 
@@ -21,6 +22,7 @@ namespace strvy {
 
 		static void drawPrimitive(const void* instanceData, uint32_t size, uint32_t instanceCount);
 
+		static void drawModel(glm::mat4& transform, Ref<Model> model, int entityID);
 
 		static void endScene();
 

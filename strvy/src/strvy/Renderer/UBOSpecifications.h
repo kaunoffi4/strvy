@@ -10,6 +10,7 @@ namespace strvy {
         glm::mat4 viewProjection;
         glm::vec3 viewPos;
         int _pad0;
+        glm::mat4 model; // temp
     };
 
     struct alignas(16) GLSLLight
@@ -60,11 +61,8 @@ namespace strvy {
     struct alignas(16) InstanceBlock 
     {
         glm::mat4 transform;
-
         int entityID;
         glm::vec3 _pad0;
-
-        glm::vec4 color;
     };
 
 }

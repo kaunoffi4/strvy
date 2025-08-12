@@ -17,9 +17,10 @@ namespace strvy {
 	class Mesh
 	{
 	public:
+
 		virtual ~Mesh() = default;
 
-		virtual void draw(Shader& shader) = 0;
+		virtual void draw(Ref<Shader> shader) = 0;
 		static Ref<Mesh> create(std::vector<Vertex> vertices, std::vector<uint32_t> indices, std::vector<Ref<Texture2D>> textures);
 	};
 

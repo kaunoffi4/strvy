@@ -19,12 +19,23 @@ namespace strvy {
 		return nullptr;
 	}
 
-	Ref<Texture2D> Texture2D::create(const std::string& path)
+	Ref<Texture2D> Texture2D::create(const std::string& path, TextureType type)
 	{
 		switch (Renderer::getAPI())
 		{
 			case RendererAPI::API::None:		SV_CORE_ASSERT(false, " rendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:		return createRef<OpenGLTexture2D>(path);
+			case RendererAPI::API::OpenGL:		return createRef<OpenGLTexture2D>(path, type);
+		}
+
+		SV_CORE_ASSERT(false, "Unknown rendererAPI!");
+		return nullptr;
+	}
+	Ref<Texture2D> Texture2D::create(const std::string& path, const std::string& type)
+	{
+		switch (Renderer::getAPI())
+		{
+		case RendererAPI::API::None:		SV_CORE_ASSERT(false, " rendererAPI::None is currently not supported!"); return nullptr;
+		case RendererAPI::API::OpenGL:		return createRef<OpenGLTexture2D>(path, type);
 		}
 
 		SV_CORE_ASSERT(false, "Unknown rendererAPI!");

@@ -19,7 +19,7 @@ void Sandbox2D::onAttach()
 {
 	SV_PROFILE_FUNCTION();
 
-	m_checkerboardTexture = strvy::Texture2D::create("assets/textures/checkerboards.png");
+	m_checkerboardTexture = strvy::Texture2D::create("assets/textures/checkerboards.png", "");
 
 
 	//m_spriteSheet = strvy::Texture2D::create("assets/textures/sheet.png");

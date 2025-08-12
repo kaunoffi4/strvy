@@ -78,6 +78,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLMesh.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -205,6 +208,9 @@
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\Texture.h">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\strvy\Renderer\UBOSpecifications.h">
       <Filter>src\strvy\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\strvy\Renderer\UniformBuffer.h">
@@ -1494,7 +1500,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\strvy\Renderer\UBOSpecifications.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1504,6 +1509,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLMesh.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1558,6 +1566,12 @@
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Renderer\Framebuffer.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Mesh.cpp">
+      <Filter>src\strvy\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\strvy\Renderer\Model.cpp">
       <Filter>src\strvy\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\strvy\Renderer\OrthographicCamera.cpp">

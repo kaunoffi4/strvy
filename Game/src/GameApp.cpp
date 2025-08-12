@@ -138,7 +138,7 @@ public:
 
 		auto textureShader = m_shaderLibrary.load("assets/shaders/Texture.glsl");
 
-		m_texture = strvy::Texture2D::create("assets/textures/checkerboards.png");
+		m_texture = strvy::Texture2D::create("assets/textures/checkerboards.png", "");
 
 		std::dynamic_pointer_cast<strvy::OpenGLShader>(textureShader)->bind();
 		std::dynamic_pointer_cast<strvy::OpenGLShader>(textureShader)->uploadUniformInt("u_Texture", 0); // upload a texture with slot number 0

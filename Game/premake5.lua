@@ -22,7 +22,8 @@ project "Game"
         "%{wks.location}/strvy/vendor",
         "%{IncludeDir.glm}",
         "%{IncludeDir.entt}",
-        "%{wks.location}/Game"
+        "%{wks.location}/Game",
+        "%{IncludeDir.Assimp}"
     }
 
     links

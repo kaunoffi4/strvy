@@ -15,6 +15,8 @@
 
 #include "strvy/Math/Math.h"
 
+
+
 namespace strvy {
 
 
@@ -27,7 +29,7 @@ namespace strvy {
 	{
 		SV_PROFILE_FUNCTION();
 
-		m_checkerboardTexture = Texture2D::create("assets/textures/checkerboards.png");
+		m_checkerboardTexture = Texture2D::create("assets/textures/checkerboards.png", TextureType::none);
 
 		FramebufferSpecification fbSpec;
 		fbSpec.attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
@@ -36,6 +38,18 @@ namespace strvy {
 		m_framebuffer = Framebuffer::create(fbSpec);
 
 		m_activeScene = createRef<Scene>();
+
+
+		// loading a model, temporary approach doing it here
+		auto& ent = m_activeScene->createEntity("Model");
+
+		Ref<Model> model = std::make_shared<Model>();
+		model->loadModel("assets/objects/backpack/backpack.obj");
+
+		ent.addComponent<ModelComponent>(model);
+		
+
+
 
 		m_editorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
@@ -247,8 +261,8 @@ namespace strvy {
 		ImGui::Begin("render stats");
 
 		std::string name = "none";
-		//if (m_hoveredEntity)
-			//name = m_hoveredEntity.getComponent<TagComponent>().tag;
+		if (m_hoveredEntity)
+			name = m_hoveredEntity.getComponent<TagComponent>().tag;
 		ImGui::Text("Hovered Entity: %s", name.c_str());
 
 

@@ -7,6 +7,7 @@
 #include <glm/gtx/quaternion.hpp>
 
 #include "SceneCamera.h"
+#include "strvy/Renderer/Model.h"
 #include "ScriptableEntity.h"
 #include "PrimitiveGeometry.h"
 
@@ -57,6 +58,16 @@ namespace strvy {
     //        : material(material) {}
     //    
     //};
+
+    struct ModelComponent
+    {
+        Ref<Model> model;
+
+        ModelComponent() = default;
+        ModelComponent(const ModelComponent&) = default;
+        ModelComponent(const Ref<Model>& model)
+            : model(model) {}
+    };
 
     // for primitive geometries use instanced rendering with advance to MDI further
     struct PrimitiveComponent

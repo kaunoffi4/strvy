@@ -111,21 +111,17 @@ namespace strvy {
         Renderer3D::beginScene(camera, lightBlock);
 
         // draw 3D objects (models)
+        
+        auto group = m_registry.group<TransformComponent>(entt::get<ModelComponent>);
 
-        // test code snippet
-        glm::mat4 modelCube1 = glm::mat4(1.0f);
-        //Renderer3D::drawCall(modelCube1, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1); // change this part (drawCall function) to pass an entity ID as the third argument
+        for (auto entity : group)
+        {
+            auto [transform, model] = group.get<TransformComponent, ModelComponent>(entity);
 
-        glm::mat4 modelLamp = glm::translate(glm::mat4(1.0f), lightBlock.lights[0].position);
-        modelLamp = glm::inverse(modelLamp);
-        modelLamp = glm::scale(modelLamp, glm::vec3(0.2f));
-        //Renderer3D::drawCall(modelLamp, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), 2);
-
-
-
+            Renderer3D::drawModel(transform.getTransform(), model.model, (int)entity);
+        }
 
         // draw 3D primitive geometries (cubes, spheres, etc.)
-        auto group = m_registry.group<TransformComponent>(entt::get<PrimitiveComponent>);
         
         struct InstanceData
         {
@@ -134,27 +130,28 @@ namespace strvy {
             int entityID;
         };
 
-        uint32_t count = group.size();
-        std::vector<InstanceData> instanceData(count);
-
-        uint32_t i = 0;
-
-        for (auto entity : group)
+        auto viewPrimitive = m_registry.view<TransformComponent, PrimitiveComponent>();
+        uint32_t count = viewPrimitive.size();
+        if (count)
         {
-            auto [transform, primitive] = group.get<TransformComponent, PrimitiveComponent>(entity);
 
-            if (i < count) // TODO: add check for different geometries (cube, sphere, etc.)
+            std::vector<InstanceData> instanceData(count);
+
+            uint32_t i = 0;
+
+            for (auto entity : viewPrimitive)
             {
+                auto& [transform, primitive] = viewPrimitive.get<TransformComponent, PrimitiveComponent>(entity);
+
                 instanceData[i].modelMatrix = transform.getTransform();
                 instanceData[i].color = primitive.color;
                 instanceData[i].entityID = (int)entity;
                 ++i;
+
             }
 
+            Renderer3D::drawPrimitive(instanceData.data(), sizeof(InstanceData)* count, count);
         }
-
-        Renderer3D::drawPrimitive(count ? instanceData.data() : nullptr, sizeof(InstanceData)* count, count);
-
         Renderer3D::endScene();
     }
 
@@ -228,6 +225,12 @@ namespace strvy {
 
     template<>
     void Scene::onComponentAdded<NativeScriptComponent>(Entity entity, NativeScriptComponent& component)
+    {
+
+    }
+
+    template<>
+    void Scene::onComponentAdded<ModelComponent>(Entity entity, ModelComponent& component)
     {
 
     }

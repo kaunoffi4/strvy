@@ -12,14 +12,17 @@ namespace strvy {
 	{
 	public:
 		OpenGLTexture2D(uint32_t width, uint32_t height, TextureType type = TextureType::none);
-		OpenGLTexture2D(const std::string& path, TextureType type = TextureType::none);
+		OpenGLTexture2D(const std::string& path, const std::string& type);
+		OpenGLTexture2D(const std::string& path, TextureType type);
 		virtual ~OpenGLTexture2D();
 
 		virtual uint32_t getWidth() const override { return m_width; }
 		virtual uint32_t getHeight() const override { return m_height; }
 		virtual uint32_t getRendererID() const override { return m_rendererID; }
+		virtual const std::string& getPath() const override { return m_path; }
 
 		virtual void setData(void* data, uint32_t size) override;
+		virtual std::string getTextureTypeAsString() const override;
 
 		virtual void bind(uint32_t slot) const override;
 

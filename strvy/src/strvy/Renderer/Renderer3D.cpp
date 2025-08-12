@@ -23,6 +23,10 @@ namespace strvy {
 
 		Ref<VertexArray> cubeVAO;
 		Ref<VertexBuffer> cubeVBO; // can be used for both default and lighting cubes
+
+        // Temporary shader just to test model rendering
+        Ref<Shader> meshShader;
+
 		Ref<Shader> lightingShader;
 		Ref<Texture2D> whiteTexture;
 
@@ -99,7 +103,6 @@ namespace strvy {
         //s_data.lampVAO = VertexArray::create();
 
         s_data.cubeVBO = VertexBuffer::create(vertices, sizeof(vertices));
-        std::cout << "break point\n";
 
         s_data.cubeVBO->setLayout({
             { ShaderDataType::Float3, "a_Position" },
@@ -134,7 +137,7 @@ namespace strvy {
         //s_data.lampVAO->setIndexBuffer(cubeIB);
 
         s_data.cubePrimitive.init();
-        s_data.instanceVBO = VertexBuffer::create(0);
+        s_data.instanceVBO = VertexBuffer::create();
 
         s_data.instanceVBO->setLayout({
             { ShaderDataType::Mat4,     "a_InstanceModel", false, 1 },
@@ -145,6 +148,8 @@ namespace strvy {
         s_data.cubePrimitive.getVAO()->addVertexBuffer(s_data.instanceVBO);
 
         s_data.lightingShader = Shader::create("assets/shaders/lightingShader.glsl");
+        s_data.meshShader = Shader::create("assets/shaders/meshShader.glsl");
+
 
         //s_data.lightCubeShader = Shader::create("assets/shaders/lightCubeShader.glsl");
 
@@ -158,7 +163,7 @@ namespace strvy {
         s_data.cameraUBO = UniformBuffer::create(sizeof(Renderer3DData::cameraBuffer), 0);
         s_data.lightUBO = UniformBuffer::create(sizeof(Renderer3DData::lightBlock), 1);
         s_data.materialUBO = UniformBuffer::create(sizeof(Renderer3DData::materialBlock), 2);
-        //s_data.instanceUBO = UniformBuffer::create(sizeof(Renderer3DData::instance), 3);
+        s_data.instanceUBO = UniformBuffer::create(sizeof(Renderer3DData::instance), 3);
 
 	}
 
@@ -169,7 +174,8 @@ namespace strvy {
 	void Renderer3D::beginScene(const EditorCamera& camera, const LightBlock& lightBlock)
 	{
 
-        s_data.lightingShader->bind();
+        //s_data.lightingShader->bind();
+        //s_data.modelShader->bind();
         // camera UBO upload
         glm::mat4 viewProj = camera.getViewProjection();
         s_data.cameraBuffer.viewProjection = viewProj;
@@ -177,7 +183,6 @@ namespace strvy {
         glm::vec3 viewPos = camera.getPosition();
         s_data.cameraBuffer.viewPos = viewPos;
 
-        //s_data.cameraUBO->setData((const void*)&s_data.cameraBuffer, sizeof(s_data.cameraBuffer));
         s_data.cameraUBO->setData((const void*)&s_data.cameraBuffer, sizeof(s_data.cameraBuffer));
 
         // lighting UBO upload
@@ -222,7 +227,7 @@ namespace strvy {
         
         s_data.instance.transform = transform;
         s_data.instance.entityID = entityID;
-        s_data.instance.color = color;
+        //s_data.instance.color = color;
 
         s_data.lightingShader->bind();
         s_data.instanceUBO->setData((const void*)&s_data.instance, sizeof(Renderer3DData::instance));
@@ -230,6 +235,18 @@ namespace strvy {
         s_data.cubeVAO->bind();
         RenderCommand::drawIndexed(s_data.cubeVAO);
         s_data.stats.drawCalls++;
+    }
+
+    // Temporary
+    void Renderer3D::drawModel(glm::mat4& transform, Ref<Model> model, int entityID)
+    {
+        s_data.meshShader->bind();
+
+        s_data.instance.transform = transform;
+        s_data.instance.entityID = entityID;
+
+        s_data.instanceUBO->setData((const void*)&s_data.instance, sizeof(Renderer3DData::instance));
+        model->draw(s_data.meshShader);
     }
 
     void Renderer3D::drawPrimitive(const void* instanceData, uint32_t size, uint32_t instanceCount)

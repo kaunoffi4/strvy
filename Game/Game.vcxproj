@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING;SV_PLATFORM_WINDOWS;SV_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\strvy\vendor\spdlog\include;..\strvy\src;..\strvy\vendor;..\strvy\vendor\glm;..\strvy\vendor\entt\include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\strvy\vendor\spdlog\include;..\strvy\src;..\strvy\vendor;..\strvy\vendor\glm;..\strvy\vendor\entt\include;.;..\strvy\vendor\assimp\assimp-5.4.3\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -97,7 +97,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING;SV_PLATFORM_WINDOWS;SV_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\strvy\vendor\spdlog\include;..\strvy\src;..\strvy\vendor;..\strvy\vendor\glm;..\strvy\vendor\entt\include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\strvy\vendor\spdlog\include;..\strvy\src;..\strvy\vendor;..\strvy\vendor\glm;..\strvy\vendor\entt\include;.;..\strvy\vendor\assimp\assimp-5.4.3\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -118,7 +118,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_SILENCE_STDEXT_ARR_ITERS_DEPRECATION_WARNING;SV_PLATFORM_WINDOWS;SV_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\strvy\vendor\spdlog\include;..\strvy\src;..\strvy\vendor;..\strvy\vendor\glm;..\strvy\vendor\entt\include;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\strvy\vendor\spdlog\include;..\strvy\src;..\strvy\vendor;..\strvy\vendor\glm;..\strvy\vendor\entt\include;.;..\strvy\vendor\assimp\assimp-5.4.3\install\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

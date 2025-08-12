@@ -6,6 +6,9 @@
 
 #include "strvy/Renderer/EditorCamera.h"
 
+//#include "strvy/Renderer/Model.h"
+
+
 namespace strvy {
 
 	class EditorLayer : public strvy::Layer

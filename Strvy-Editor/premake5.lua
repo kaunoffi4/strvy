@@ -22,7 +22,8 @@ project "Strvy-Editor"
         "%{IncludeDir.glm}",
         "%{wks.location}/strvy/vendor",
         "%{IncludeDir.entt}",
-        "%{IncludeDir.ImGuizmo}"
+        "%{IncludeDir.ImGuizmo}",
+        "%{IncludeDir.Assimp}"
     }
 
     links
