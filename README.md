@@ -8,9 +8,11 @@ Start by cloning the repository with `git clone --recursive https://github.com/k
 
 If the repository was cloned non-recursively previously, use `git submodule update --init` to clone the necessary submodules.
 
-Execute `Win-GenProjects.bat` script file, which will then generate a Visual Studio solution file for user's usage.
+Execute `Setup.bat` script file in the scripts folder, which will then setup all the required external dependencies and generate a Visual Studio solution file for user's usage.
 
 If changes are made, or if you want to regenerate project files, rerun the Win-GenProjects.bat script file found in scripts folder.
+
+In case of any inconsistencies run `Setup.bat` file.
 
 At this point if you did previous steps, you should be able to run and see a window, with UI, try to create and render some objects using RMB click on the left panel. To rotate a camera hold left alt while pressing LMB and move the mouse.
 
